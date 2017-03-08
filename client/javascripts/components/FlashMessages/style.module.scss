@@ -1,0 +1,35 @@
+.flash_container {
+  bottom: auto;
+  box-sizing: border-box;
+  height: auto;
+  left: auto;
+  position: fixed;
+  padding: 0px 10px 10px;
+  right: 0px;
+  top: 0px;
+  width: 320px;
+  z-index: 9998;
+}
+
+.flash {
+  animation-duration: 0.5s;
+  animation-name: slidein;
+  border-radius: 2px;
+  box-sizing: border-box;
+  display: block;
+  margin: 10px 0px 0px;
+  transition: 0.3s ease-in-out;
+  width: 100%;
+}
+
+/* ▼アニメーション名「slidein」の動作内容 */
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}

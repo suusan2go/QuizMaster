@@ -1,0 +1,13 @@
+[ignore]
+.*/node_modules/.*
+
+[include]
+
+[libs]
+./client/interfaces/global.js
+
+[options]
+module.name_mapper='.*\(.css\)' -> 'CSSModule'
+module.name_mapper='.*\(.scss\)' -> 'CSSModule'
+module.system=haste
+strip_root=true
