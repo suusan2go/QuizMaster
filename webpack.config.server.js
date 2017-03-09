@@ -33,7 +33,6 @@ module.exports = {
       },
       {
         test: /\.(scss|css)$/,
-        include: /\.modules\.(css|scss)$/,
         loader: 'null-loader',
       },
       {

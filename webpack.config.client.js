@@ -47,6 +47,9 @@ module.exports = {
           use: [
             {
               loader: 'css-loader',
+              options: {
+                modules: true,
+              },
             },
             {
               loader: 'sass-loader',
@@ -76,8 +79,27 @@ module.exports = {
         }),
       },
       {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file-loader',
+        options: {
+          mimetype: 'application/font-woff',
+        },
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file-loader?mimetype=image/svg+xml',
+      },
+      {
+        test: /\.woff(\d+)?(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file-loader?mimetype=application/font-woff',
+      },
+      {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file-loader?mimetype=application/font-woff',
+      },
+      {
         test: /\.(jpg|png|gif)$/,
-        loader: 'url-loader',
+        loader: 'file-loader',
         options: {
           name: '[path][name]-[hash].[ext]',
         },
