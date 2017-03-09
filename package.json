@@ -10,7 +10,7 @@
     "dev:server": "NODE_ENV=server webpack -w --config webpack.config.server.js --profile",
     "prod:client": "NODE_ENV=production webpack -p --config webpack.config.client.js",
     "prod:server": "NODE_ENV=production webpack -p --config webpack.config.server.js",
-    "hypernova": "NODE_ENV=production　NODE_PATH=./client node hypernova.js",
+    "hypernova": "NODE_ENV=production　NODE_PATH=./client node hypernova/server.js",
     "flow": "flow"
   },
   "dependencies": {

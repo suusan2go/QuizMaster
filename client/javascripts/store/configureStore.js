@@ -10,10 +10,16 @@ import type { Store } from 'redux';
 import rootSaga from '../sagas';
 import rootReducer from '../reducers';
 
+const canUseDOM = !!(
+  typeof window !== 'undefined' &&
+  window.document &&
+  window.document.createElement
+);
+
 const sagaMiddleware = createSagaMiddleware();
 const middlewares = [sagaMiddleware];
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = (canUseDOM && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 if (process.env.NODE_ENV !== 'production') {
   const createLogger = require('redux-logger'); //eslint-disable-line
   const logger = createLogger();

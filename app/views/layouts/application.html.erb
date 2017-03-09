@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>QuizMaster</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <title>QuizMaster</title>
+    <%= stylesheet_link_tag webpack_asset_path('bundle.css') %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="app-root">
+      <%= render_react_component('AppRouter', location: request.url, current_user: {}) %>
+    </div>
+    <%= javascript_include_tag webpack_asset_path('bundle.js') %>
   </body>
 </html>

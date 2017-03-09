@@ -1,10 +1,17 @@
-import React from 'react'
+import React from 'react';
 
-export default function CommonLayout(children: React.element<*>) {
-  return (
-    <div>
-      CommonLayout
-      {children}
-    </div>
-  )
+type Props = {
+  children: React.element<*>
+};
+
+export default class CommonLayout extends React.Component {
+  props: Props
+  render() {
+    return (
+      <div>
+          CommonLayout
+          {this.props.children}
+      </div>
+    );
+  }
 }

@@ -8,6 +8,7 @@ const renderReact = require('hypernova-react').renderReact;
 
 type Props = {
   current_user: object,
+  location: string,
 }
 
 class ServerRouter extends React.Component {
@@ -35,9 +36,5 @@ class ServerRouter extends React.Component {
     );
   }
 }
-
-ServerRouter.propTypes = {
-  location: React.PropTypes.string.isRequired,
-};
 
 export default renderReact('AppRouter', ServerRouter);

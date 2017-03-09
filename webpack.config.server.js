@@ -4,7 +4,10 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
-    ServerRouter: `${__dirname}/client/javascripts/ServerRouter.jsx`,
+    ServerRouter: [
+      'babel-polyfill',
+      `${__dirname}/client/javascripts/ServerRouter.jsx`,
+    ],
   },
   target: 'node',
   output: {
@@ -24,7 +27,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
         loader: 'babel-loader',
       },

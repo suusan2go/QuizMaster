@@ -6,7 +6,6 @@ import { renderReact } from 'hypernova-react';
 import 'stylesheets/bundle.scss';
 
 import routes from './routes';
-
 import configureStore from './store/configureStore';
 
 const AppRouter = (props: { current_user: any }) => {
