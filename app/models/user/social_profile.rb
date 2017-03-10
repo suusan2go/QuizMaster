@@ -25,4 +25,21 @@
 
 class User::SocialProfile < ApplicationRecord
   belongs_to :user
+
+  class << self
+    def find_or_initialize_from_omniauth(omniauth:)
+      social_profile = find_or_initialize_by(
+        provider: omniauth[:provider],
+        uid: omniauth[:uid]
+      )
+      social_profile.assign_attributes(
+        access_token: omniauth[:credentials][:token],
+        name: omniauth[:info][:name],
+        email: omniauth[:info][:email],
+        image_url: omniauth[:info][:image],
+        auth_dump: omniauth.to_json
+      )
+      social_profile
+    end
+  end
 end
