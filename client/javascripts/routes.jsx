@@ -4,6 +4,7 @@ import CommonLayout from 'components/Layout/CommonLayout';
 import TeachingLayout from 'components/Layout/TeachingLayout';
 // import StudentLayout from 'components/Layout/StudentLayout';
 import Top from 'components/Top';
+import Quizes from 'components/teaching/Quizes';
 
 export default (
   <Route path="/">
@@ -11,7 +12,8 @@ export default (
       <IndexRoute component={Top} />
     </Route>
     <Route component={TeachingLayout} path="teaching" >
-      <IndexRoute component={<p>Student</p>} />
+      <IndexRoute component={Quizes} />
+      <Route component={Quizes} path="quizes" />
     </Route>
     {
       /*

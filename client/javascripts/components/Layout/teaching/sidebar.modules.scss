@@ -1,0 +1,42 @@
+.wrapper {
+  height: 100%;
+}
+
+.sidebar {
+  height: 100%;
+  position: absolute;
+  width: 200px;
+  padding: 10px;
+  left: 0px;
+  transition: left 300ms ease-out;
+}
+
+.sidebar_nav {
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 0;
+  &:hover {
+    background-color: #e3f2fd;
+  }
+}
+
+.sidebar_nav_active {
+  background-color: #33b5e5;
+  color: white;
+}
+
+.main {
+  margin-left: 200px;
+  padding: 10px;
+  position: relative;
+  transition: margin-left 300ms ease-out;
+}
+
+@media screen and (max-width: 992px)  {
+  .sidebar {
+    left: -200px;
+  }
+  .main {
+    margin-left: 0px;
+  }
+}
