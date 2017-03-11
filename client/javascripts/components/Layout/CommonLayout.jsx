@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header';
+import FlashMessages from '../FlashMessages';
 
 type Props = {
   children: React.element<*>
@@ -11,6 +12,7 @@ export default class CommonLayout extends React.Component {
     return (
       <div>
         <Header />
+        <FlashMessages />
         {this.props.children}
         <footer className="page-footer default-color-dark center-on-small-only">
           <div className="footer-copyright">
