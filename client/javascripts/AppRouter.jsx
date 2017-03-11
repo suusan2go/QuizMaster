@@ -13,7 +13,7 @@ const AppRouter = (props: { current_user: any }) => {
   return (
     <Provider store={store}>
       <Router history={browserHistory}>
-        {routes}
+        {routes(store)}
       </Router>
     </Provider>
   );

@@ -21,7 +21,7 @@ class ServerRouter extends React.Component {
 
     const { location } = this.props;
 
-    match({ routes, location }, (_error, _redirectLocation, _routeProps) => {
+    match({ routes: routes(store), location }, (_error, _redirectLocation, _routeProps) => {
       error = _error;
       redirectLocation = _redirectLocation;
       routeProps = _routeProps;
