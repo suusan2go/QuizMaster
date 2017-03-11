@@ -29,3 +29,7 @@ function sendPatch(url: string, data: Object) {
 function sendPost(url: string, data: Object) {
   return axiosClient.post(url, data).then(response => response.data);
 }
+
+export function createQuiz(values: { title: string, description: string }) {
+  return sendPost('/api/quizzes', { quiz: values });
+}
