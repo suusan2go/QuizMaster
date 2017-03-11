@@ -1,12 +1,6 @@
 // @flow
-// if (process.env.NODE_ENV === 'production') {
-//   module.exports = require('./configureStore.prod');
-// } else {
-//   module.exports = require('./configureStore.dev');
-// }
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import type { Store } from 'redux';
 import rootSaga from '../sagas';
 import rootReducer from '../reducers';
 
