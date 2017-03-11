@@ -3,7 +3,7 @@ class AuthsController < ApplicationController
   def callback
     user = User.find_or_create_from_omniauth(omniauth)
     sign_in(user: user)
-    redirect_to teaching_url
+    redirect_to root_url
   end
   alias google callback
 
