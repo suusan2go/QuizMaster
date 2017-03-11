@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './common/Header';
+import Header from './Header';
 
 type Props = {
   children: React.element<*>
