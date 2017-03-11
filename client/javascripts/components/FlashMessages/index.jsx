@@ -1,16 +1,12 @@
 import React from 'react';
-import style from './style.module.scss';
-import Flash from './Flash';
-import FlashMessages from 'components/FlashMessages';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as flashMessagesActions from 'actions/flashMessagesActionCreators';
+import style from './style.modules.scss';
+import Flash from './Flash';
 
 type Props = {
-  flashMessages: Array{
-    type: string
-    message: string
-  },
+  flashMessages: Array<{ type: string, message: string }>,
   removeFlashMessage: action,
 }
 

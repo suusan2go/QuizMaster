@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './style.scss';
+import style from './style.modules.scss';
 
 type Props = {
   id: string,
@@ -11,13 +11,13 @@ type Props = {
 const autoCloseSeconds = 10;
 const transitionSeconds = 0.3;
 export default class Flash extends React.Component {
-  props: Props
-
   constructor(props) {
     super(props);
     this.handleClickClose = this.handleClickClose.bind(this);
     this.state = { styles: { } };
   }
+
+  props: Props
 
   componentDidMount() {
     setTimeout(() => this.handleClickClose, autoCloseSeconds * 1000);
