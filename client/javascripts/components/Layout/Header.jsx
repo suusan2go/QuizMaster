@@ -25,8 +25,10 @@ const Header = (props: Props) => {
           currentUser &&
           <div className="collapse navbar-collapse" id="navbarNav3">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item active">
-                <a className="nav-link waves-effect waves-light"><i className="fa fa-question" /> ManageQuizez</a>
+              <li className="nav-item">
+                <Link className="nav-link waves-effect waves-light" to="/user/quizzes">
+                  <i className="fa fa-question" /> ManageQuizez
+                </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link waves-effect waves-light"><i className="fa fa-gear" /> SignOut</a>

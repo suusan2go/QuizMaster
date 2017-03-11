@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, IndexRoute, browserHistory } from 'react-router';
 import CommonLayout from 'components/Layout/CommonLayout';
 import Top from 'components/Top';
+import MyQuizzesList from 'components/MyQuizzesList';
 import QuizzesList from 'components/QuizzesList';
 import QuizForm from 'components/QuizForm';
 
@@ -25,6 +26,7 @@ export default function (store) {
       <IndexRoute component={Top} onEnter={requireNoAuth} />
       <Route component={QuizzesList} path="/quizzes" onEnter={requireAuth} />
       <Route component={QuizForm} path="/quizzes/new" onEnter={requireAuth} />
+      <Route component={MyQuizzesList} path="/user/quizzes" onEnter={requireAuth} />
     </Route>
   );
 }
