@@ -7,13 +7,13 @@ class Api::QuizzesController < Api::ApplicationController
       render_json props: quiz.as_json
     else
       # TODO: create ValidationErrorsSerializer Class
-      redner_json props: { validationErrors: quiz.errors.full_messages }, status: :bad_request
+      render_json props: { validationErrors: Hash[*quiz.errors.keys.flat_map{ |k| [k, quiz.errors.full_messages_for(k) ] }] }, status: :unprocessable_entity
     end
   end
 
   private
 
   def quiz_params
-    params.require(:quiz).permit(:title, :description).merge(user_id: current_user.id)
+    params.require(:quiz).permit(:title, :description).merge(user_id: current_user.id) if params[:quiz].present?
   end
 end
