@@ -11,7 +11,6 @@ type Props = {
 
 const Header = (props: Props) => {
   const currentUser = props.currentUser;
-  console.log(props);
   // const { actions: { requestSignOut } } = props;
   return (
     <nav className="navbar navbar-toggleable-md navbar-dark default-color">
@@ -19,9 +18,9 @@ const Header = (props: Props) => {
         <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon" />
         </button>
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           <strong>QuizMaster</strong>
-        </a>
+        </Link>
         {
           currentUser &&
           <div className="collapse navbar-collapse" id="navbarNav3">
