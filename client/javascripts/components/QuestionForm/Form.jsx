@@ -15,6 +15,9 @@ const contentInput = (field) => {
         {...field.input}
       />
       <label htmlFor={field.input.name} className="active">Question</label>
+      {
+      hasError && <div className="form-control-feedback">{field.meta.error}</div>
+    }
     </div>
   );
 };
@@ -33,9 +36,6 @@ const answerInput = (field) => {
       {
         hasError && <div className="form-control-feedback">{field.meta.error}</div>
       }
-      {
-      hasError && <div className="form-control-feedback">{field.meta.error}</div>
-    }
     </div>
   );
 };

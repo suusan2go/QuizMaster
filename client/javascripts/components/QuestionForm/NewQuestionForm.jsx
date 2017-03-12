@@ -8,11 +8,21 @@ import QuestionForm from './Form';
 
 type Props = {
   actions: { createQuestion: action },
+  params: { id: string }
 }
 
 class NewQuestionForm extends React.Component {
   static closeModal() {
     browserHistory.goBack();
+  }
+
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(values) {
+    this.props.actions.createQuestion({ values, quizId: this.props.params.id });
   }
 
   props: Props
@@ -27,7 +37,7 @@ class NewQuestionForm extends React.Component {
             { charset: 'utf-8' },
           ]}
         />
-        <QuestionForm onSubmit={this.props.actions.createQuestion} title="New Question" />
+        <QuestionForm onSubmit={this.handleSubmit} title="New Question" />
       </div>
     );
   }
