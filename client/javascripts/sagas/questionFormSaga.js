@@ -4,11 +4,14 @@ import * as api from 'api';
 import {
   CREATE_QUESTION,
   UPDATE_QUESTION,
+  DELETE_QUESTION,
   createQuestionSuccess,
   createQuestionFailed,
   updateQuestionSuccess,
   updateQuestionFailed,
+  deleteQuestionSuccess,
 } from 'actions/questionFormActionCreators';
+import { fetchMyQuizzes } from 'actions/myQuizzesActionCreators';
 import {
   addWarningFlashMessage,
   addSuccessFlashMessage,
@@ -56,9 +59,21 @@ export function* handleUpdateQuestion(action) {
   }
 }
 
+export function* handleDeleteQuestion(action) {
+  try {
+    yield call(api.deleteQuestion, action.payload);
+    yield put(deleteQuestionSuccess(action.payload));
+    yield put(removeAllFlashMessages());
+    yield put(addSuccessFlashMessage('Deleted'));
+  } catch (error) {
+    // TODO: error handling
+  }
+}
+
 export default function* diarySaga() {
   yield [
     takeLatest(CREATE_QUESTION, handleCreateQuestion),
     takeLatest(UPDATE_QUESTION, handleUpdateQuestion),
+    takeLatest(DELETE_QUESTION, handleDeleteQuestion),
   ];
 }

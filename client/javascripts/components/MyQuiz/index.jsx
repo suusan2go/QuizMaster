@@ -4,9 +4,15 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as myQuizActions from 'actions/myQuizActionCreators';
+import * as questionFormActionCreators from 'actions/questionFormActionCreators';
 
 const mapDispatchToProps = dispatch => (
-  { actions: bindActionCreators(myQuizActions, dispatch) }
+  {
+    actions: {
+      ...bindActionCreators(myQuizActions, dispatch),
+      ...bindActionCreators(questionFormActionCreators, dispatch),
+    },
+  }
 );
 
 const mapStateToProps = (state, ownProps) => ({
@@ -15,7 +21,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 type Props = {
-  actions: { fetchMyQuiz: action },
+  actions: { fetchMyQuiz: action, deleteQuestion: action },
   myQuiz: {
     title: string, descriptn: string, id: string,
     questions: Array<{ id: string, content: string, answer_content: string }>
@@ -26,6 +32,12 @@ type Props = {
 class myQuiz extends React.Component {
   componentDidMount() {
     this.props.actions.fetchMyQuiz(this.props.params.id);
+  }
+
+  handleDeleteQuestion(questionID) {
+    return () => {
+      this.props.actions.deleteQuestion(questionID);
+    };
   }
 
   props: Props
@@ -75,7 +87,9 @@ class myQuiz extends React.Component {
                       </div>
                       <div className="col-sm-2">
                         <Link to={`/user/questions/${question.id}/edit`} className="btn btn-md btn-block btn-default">Edit</Link>
-                        <button type="button" className="btn btn-md btn-block btn-danger">Delete</button>
+                        <button type="button" className="btn btn-md btn-block btn-danger" onClick={this.handleDeleteQuestion(question.id)}>
+                          Delete
+                        </button>
                       </div>
                     </div>
                   </div>

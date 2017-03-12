@@ -49,3 +49,7 @@ export function createQuestion(quizId: string, values: { content: string, answer
 export function updateQuestion(questionId: string, values: { content: string, answer_content: string}) {
   return sendPatch(`/api/user/questions/${questionId}`, { question: values });
 }
+
+export function deleteQuestion(questionId: string) {
+  return sendDelete(`/api/user/questions/${questionId}`);
+}
