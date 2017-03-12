@@ -45,3 +45,7 @@ export function myQuiz(id: string) {
 export function createQuestion(quizId: string, values: { content: string, answer_content: string}) {
   return sendPost(`/api/user/quizzes/${quizId}/questions`, { question: values });
 }
+
+export function updateQuestion(questionId: string, values: { content: string, answer_content: string}) {
+  return sendPatch(`/api/user/questions/${questionId}`, { question: values });
+}
