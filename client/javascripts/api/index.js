@@ -34,6 +34,10 @@ export function createQuiz(values: { title: string, description: string }) {
   return sendPost('/api/quizzes', { quiz: values });
 }
 
+export function updateQuiz(quizId: string, values: { title: string, description: string }) {
+  return sendPatch(`/api/quizzes/${quizId}`, { quiz: values });
+}
+
 export function myQuizzes() {
   return get('/api/user/quizzes');
 }

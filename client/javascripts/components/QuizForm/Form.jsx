@@ -77,7 +77,7 @@ class QuizForm extends React.Component {
                 <Field name="description" component={descriptionInput} />
               </div>
               <div className="modal-footer">
-                <button type="submit" className="btn btn-primary">Start Creation</button>
+                <button type="submit" className="btn btn-primary">Save</button>
                 <button type="button" className="btn btn-secondary" onClick={QuizForm.closeModal}>Close</button>
               </div>
             </div>

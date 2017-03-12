@@ -1,12 +1,16 @@
 import { createAction } from 'redux-actions';
 
 // TODO: fix naming. CREATE or UPDATE is better i think...
-export const POST_QUIZ = 'POST_QUIZ';
-export const POST_QUIZ_SUCCESS = 'POST_QUIZ_SUCCESS';
-export const POST_QUIZ_FAILED = 'POST_QUIZ_FAILED';
-export const CLEAR_QUIZ = 'CLEAR_QUIZ';
+export const CREATE_QUIZ = 'CREATE_QUIZ';
+export const CREATE_QUIZ_SUCCESS = 'CREATE_QUIZ_SUCCESS';
+export const CREATE_QUIZ_FAILED = 'CREATE_QUIZ_FAILED';
+export const UPDATE_QUIZ = 'UPDATE_QUIZ';
+export const UPDATE_QUIZ_SUCCESS = 'UPDATE_QUIZ_SUCCESS';
+export const UPDATE_QUIZ_FAILED = 'UPDATE_QUIZ_FAILED';
 
-export const postQuiz = createAction(POST_QUIZ);
-export const postQuizSuccess = createAction(POST_QUIZ_SUCCESS);
-export const postQuizFailed = createAction(POST_QUIZ_FAILED);
-export const clearQuiz = createAction(CLEAR_QUIZ);
+export const createQuiz = createAction(CREATE_QUIZ);
+export const createQuizSuccess = createAction(CREATE_QUIZ_SUCCESS);
+export const createQuizFailed = createAction(CREATE_QUIZ_FAILED);
+export const updateQuiz = createAction(UPDATE_QUIZ);
+export const updateQuizSuccess = createAction(UPDATE_QUIZ_SUCCESS);
+export const updateQuizFailed = createAction(UPDATE_QUIZ_FAILED);

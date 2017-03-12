@@ -11,6 +11,11 @@ type Props = {
 }
 
 class EditQuizForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
   props: Props
 
   handleSubmit(values) {
@@ -18,7 +23,6 @@ class EditQuizForm extends React.Component {
   }
 
   render() {
-    const { actions } = this.props;
     return (
       <div>
         <Helmet
