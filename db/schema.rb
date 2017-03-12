@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170311083506) do
+ActiveRecord::Schema.define(version: 20170312051048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "quiz_question_answers", force: :cascade do |t|
+    t.integer  "question_id", null: false
+    t.text     "content",     null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["question_id"], name: "index_quiz_question_answers_on_question_id", unique: true, using: :btree
+  end
+
+  create_table "quiz_questions", force: :cascade do |t|
+    t.integer  "quiz_id",    null: false
+    t.text     "content",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_quiz_questions_on_quiz_id", using: :btree
+  end
 
   create_table "quizzes", force: :cascade do |t|
     t.integer  "user_id",                 null: false
@@ -53,6 +69,8 @@ ActiveRecord::Schema.define(version: 20170311083506) do
     t.index ["name"], name: "index_users_on_name", unique: true, using: :btree
   end
 
+  add_foreign_key "quiz_question_answers", "quiz_questions", column: "question_id"
+  add_foreign_key "quiz_questions", "quizzes"
   add_foreign_key "quizzes", "users"
   add_foreign_key "user_social_profiles", "users"
 end
