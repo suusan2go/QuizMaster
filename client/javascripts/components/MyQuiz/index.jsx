@@ -58,7 +58,7 @@ class myQuiz extends React.Component {
           </div>
           <div className="row">
             <div className="col-12 mb-1">
-              <Link to="/quizzes/new" className="btn btn-primary float-right">
+              <Link to={`/user/quizzes/${quiz.id}/questions/new`} className="btn btn-primary float-right">
               ADD QESTION
             </Link>
             </div>
