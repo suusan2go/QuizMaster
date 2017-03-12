@@ -16,6 +16,8 @@
 #
 
 class User < ApplicationRecord
+  has_many :quizzes
+
   class << self
     def find_or_create_from_omniauth(omniauth)
       profile = User::SocialProfile.find_or_initialize_from_omniauth(omniauth: omniauth)
