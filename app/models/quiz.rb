@@ -18,6 +18,8 @@
 class Quiz < ApplicationRecord
   enum status: { draft: 0, published: 10 }
 
+  has_many :questions
+  has_many :answers, through: :questions
   belongs_to :user
 
   validates :title, presence: true

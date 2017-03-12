@@ -86,6 +86,8 @@ GEM
       faraday (~> 0.8)
     i18n (0.8.1)
     json (2.0.3)
+    json_world (0.2.5)
+      activesupport
     jwt (1.5.6)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -280,6 +282,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   factory_girl
   hypernova
+  json_world
   letter_opener_web
   listen (~> 3.0.5)
   mini_racer

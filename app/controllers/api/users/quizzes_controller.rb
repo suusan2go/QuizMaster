@@ -6,4 +6,9 @@ class Api::Users::QuizzesController < Api::ApplicationController
     # TODO: Add QuizzesSerializer class
     render_json props: { quizzes: quizzes.as_json }
   end
+
+  def show
+    quiz = current_user.quizzes.includes(questions: [:answer]).find(params[:id])
+    render_json props: User::QuizSerializer.new(model: quiz).as_json
+  end
 end
