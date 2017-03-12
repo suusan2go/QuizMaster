@@ -20,7 +20,7 @@ class Quiz::Question < ApplicationRecord
   validates :content, presence: true
   validates :answer_content, presence: true
 
-  delegate :content, to: :answer, prefix: true
+  delegate :content, to: :answer, prefix: true, allow_nil: true
 
   def answer_content=(value)
     a = answer || build_answer

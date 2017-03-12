@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   namespace :api do
     resources :quizzes, only: [:create, :update]
     resource :user, only: [] do
-      resources :quizzes, only: [:index, :show], module: :users
+      resources :quizzes, only: [:index, :show], module: :users do
+        resources :questions, only: [:create], module: :quizzes
+      end
     end
   end
   get '/auth/:action/callback', to: 'auths#callback'
