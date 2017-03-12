@@ -42,34 +42,30 @@ class MyQuizzes extends React.Component {
             <h1 className="h1-responsive d-inline-block">
               My Quizez
             </h1>
-            <Link to="/quizzes/new" className="btn btn-primary float-right">
+            <Link to="/quizzes/new" className="btn btn-md btn-primary float-right">
               Create Your New Quiz !
             </Link>
           </div>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Title</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
+          <div className="list-group">
+            {
                 this.props.myQuizzes.map(quiz => (
-                  <tr key={quiz.id}>
-                    <th scope="row">{quiz.id}</th>
-                    <td>{quiz.title}</td>
-                    <td>
-                      <a className="teal-text mr-3"><i className="fa fa-pencil" /></a>
-                      <a className="red-text"><i className="fa fa-times" /></a>
-                    </td>
-                  </tr>
-
+                  <div className="list-group-item list-group-item-action flex-column align-items-start" key={quiz.id}>
+                    <div className="d-flex w-100 justify-content-between">
+                      <h3 className="mr-auto">{quiz.title}</h3>
+                      <div className="d-flex justify-content-between">
+                        <Link to={`/user/quizzes/${quiz.id}`} className="btn btn-md btn-default">
+                          <i className="fa fa-pencil" /> EDit
+                        </Link>
+                        <Link className="btn btn-md btn-danger">
+                          <i className="fa fa-times" />Delete
+                        </Link>
+                      </div>
+                    </div>
+                    <p>{quiz.description}</p>
+                  </div>
                 ))
-              }
-            </tbody>
-          </table>
+            }
+          </div>
         </div>
       </div>
     );
