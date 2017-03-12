@@ -15,18 +15,24 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 type Props = {
-  actions: { fetchmyQuiz: action },
-  myQuiz: Array<{ title: string, descriptn: string, id: string }>
+  actions: { fetchMyQuiz: action },
+  myQuiz: {
+    title: string, descriptn: string, id: string,
+    questions: Array<{ id: string, content: string, answer_content: string }>
+  },
+  params: { id: string }
 }
 
 class myQuiz extends React.Component {
   componentDidMount() {
-    this.props.actions.fetchmyQuiz();
+    this.props.actions.fetchMyQuiz(this.props.params.id);
   }
 
   props: Props
 
   render() {
+    const quiz = this.props.myQuiz;
+    const { questions } = this.props.myQuiz;
     return (
       <div>
         <Helmet
@@ -39,14 +45,14 @@ class myQuiz extends React.Component {
         <div className="container">
           <div className="page-header">
             <h1 className="h1-responsive d-inline-block">
-              My Quizez
+              { quiz.title }
             </h1>
             <Link to="/quizzes/new" className="btn btn-default float-right">
               EDIT YOUR QUIZ
             </Link>
             <div>
               <p>
-                somedescriptions
+                { quiz.description }
               </p>
             </div>
           </div>
@@ -57,20 +63,24 @@ class myQuiz extends React.Component {
             </Link>
             </div>
             <div className="col-12">
-              <div className="list-group">
-                <div href="#" className="list-group-item list-group-item-action align-items-start">
-                  <div className="col-sm-10 justify-content-between">
-                    <h3 className="mr-auto">Question</h3>
-                    <p>hogehogehogehahahgaga</p>
-                    <h3 className="mr-auto">Answer</h3>
-                    <p>hogehogehogehahahgaga</p>
+              {
+                questions.map(question => (
+                  <div className="list-group" key={question.id}>
+                    <div className="list-group-item list-group-item-action align-items-start">
+                      <div className="col-sm-10 justify-content-between">
+                        <h3 className="mr-auto">Question</h3>
+                        <p>{question.content}</p>
+                        <h3 className="mr-auto">Answer</h3>
+                        <p>{question.answer_content}</p>
+                      </div>
+                      <div className="col-sm-2">
+                        <Link to={`/user/questions/${question.id}/edit`} className="btn btn-md btn-block btn-default">Edit</Link>
+                        <button type="button" className="btn btn-md btn-block btn-danger">Delete</button>
+                      </div>
+                    </div>
                   </div>
-                  <div className="col-sm-2">
-                    <Link className="btn btn-md btn-block btn-default">Edit</Link>
-                    <Link className="btn btn-md btn-block btn-danger">Delete</Link>
-                  </div>
-                </div>
-              </div>
+                ))
+              }
             </div>
           </div>
         </div>

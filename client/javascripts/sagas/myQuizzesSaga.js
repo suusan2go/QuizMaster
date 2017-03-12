@@ -5,7 +5,7 @@ import {
   fetchMyQuizzesSuccess,
 } from 'actions/myQuizzesActionCreators';
 
-export function* handleFetchQuiz(action) {
+export function* handleFetchQuizzes(action) {
   try {
     const payload = yield call(api.myQuizzes, action.payload);
     yield put(fetchMyQuizzesSuccess(payload));
@@ -15,5 +15,5 @@ export function* handleFetchQuiz(action) {
 }
 
 export default function* myQuizzesSaga() {
-  yield takeEvery(FETCH_MY_QUIZZES, handleFetchQuiz);
+  yield takeEvery(FETCH_MY_QUIZZES, handleFetchQuizzes);
 }

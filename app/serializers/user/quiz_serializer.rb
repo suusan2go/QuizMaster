@@ -10,7 +10,7 @@ class User::QuizSerializer < ApplicationSerializer
 
   def questions
     model_questions.map do |question|
-      { id: question.id, content: question.content, answer_content: questio.answer_content }
+      { id: question.id, content: question.content, answer_content: question.answer_content }
     end
   end
 end

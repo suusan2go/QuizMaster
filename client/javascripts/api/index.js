@@ -37,3 +37,7 @@ export function createQuiz(values: { title: string, description: string }) {
 export function myQuizzes() {
   return get('/api/user/quizzes');
 }
+
+export function myQuiz(id: string) {
+  return get(`/api/user/quizzes/${id}`);
+}
