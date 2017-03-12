@@ -22,7 +22,7 @@ export function* handlePostQuiz(action) {
     yield put(removeAllFlashMessages());
     yield put(addSuccessFlashMessage('Submission Succeeded'));
     yield put(reset('quizForm'));
-    browserHistory.push('/');
+    browserHistory.push(`/user/quizzes/${payload.id}`);
   } catch (error) {
     yield put(postQuizFailed(error));
     yield put(removeAllFlashMessages());

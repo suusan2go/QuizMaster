@@ -59,7 +59,7 @@ class myQuiz extends React.Component {
             <h1 className="h1-responsive d-inline-block">
               { quiz.title }
             </h1>
-            <Link to="/quizzes/new" className="btn btn-default float-right">
+            <Link to={`/quizzes/${quiz.id}/edit`} className="btn btn-default float-right">
               EDIT YOUR QUIZ
             </Link>
             <div>

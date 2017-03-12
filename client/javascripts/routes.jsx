@@ -5,7 +5,8 @@ import Top from 'components/Top';
 import MyQuizzes from 'components/MyQuizzes';
 import MyQuiz from 'components/MyQuiz';
 import Quizzes from 'components/Quizzes';
-import QuizForm from 'components/QuizForm';
+import NewQuizForm from 'components/QuizForm/NewQuizForm';
+import EditQuizForm from 'components/QuizForm/EditQuizForm';
 import NewQuestionForm from 'components/QuestionForm/NewQuestionForm';
 import EditQuestionForm from 'components/QuestionForm/EditQuestionForm';
 
@@ -28,7 +29,8 @@ export default function (store) {
     <Route path="/" component={CommonLayout}>
       <IndexRoute component={Top} onEnter={requireNoAuth} />
       <Route component={Quizzes} path="/quizzes" onEnter={requireAuth} />
-      <Route component={QuizForm} path="/quizzes/new" onEnter={requireAuth} />
+      <Route component={NewQuizForm} path="/quizzes/new" onEnter={requireAuth} />
+      <Route component={EditQuizForm} path="/quizzes/:id/edit" onEnter={requireAuth} />
       <Route component={MyQuizzes} path="/user/quizzes" onEnter={requireAuth} />
       <Route component={MyQuiz} path="/user/quizzes/:id" onEnter={requireAuth} />
       <Route component={MyQuiz} path="/user/quizzes/:id" onEnter={requireAuth} />
