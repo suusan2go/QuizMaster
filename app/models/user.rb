@@ -17,6 +17,7 @@
 
 class User < ApplicationRecord
   has_many :quizzes
+  has_many :questions, through: :quizzes, class_name: Quiz::Question.name
 
   class << self
     def find_or_create_from_omniauth(omniauth)
