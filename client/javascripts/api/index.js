@@ -14,8 +14,8 @@ axiosClient.interceptors.request.use(
   error => Promise.reject(error),
 );
 
-function get(url: string) {
-  return axiosClient.get(url).then(response => response.data);
+function get(url: string, params: any = {}) {
+  return axiosClient.get(url, params).then(response => response.data);
 }
 
 function sendDelete(url: string) {
@@ -32,4 +32,8 @@ function sendPost(url: string, data: Object) {
 
 export function createQuiz(values: { title: string, description: string }) {
   return sendPost('/api/quizzes', { quiz: values });
+}
+
+export function myQuizzes() {
+  return get('/api/user/quizzes');
 }
