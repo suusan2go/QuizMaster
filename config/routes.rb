@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :quizzes, only: [:index, :show], module: :users do
         resources :questions, only: [:create], module: :quizzes
       end
-      resources :questions, only: [:update], module: :users
+      resources :questions, only: [:update, :destroy], module: :users
     end
   end
   get '/auth/:action/callback', to: 'auths#callback'

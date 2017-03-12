@@ -11,6 +11,12 @@ class Api::Users::QuestionsController < Api::ApplicationController
     end
   end
 
+  def destroy
+    question = current_user.questions.find(params[:id])
+    question.destroy
+    render_json props: {}, status: :no_content
+  end
+
   private
 
   def question_params

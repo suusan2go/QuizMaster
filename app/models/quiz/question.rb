@@ -15,7 +15,10 @@
 #
 
 class Quiz::Question < ApplicationRecord
-  has_one :answer, class_name: Quiz::Question::Answer.name, autosave: true
+  has_one :answer,
+    class_name: Quiz::Question::Answer.name,
+    autosave: true,
+    dependent: :destroy
   belongs_to :quiz
   validates :content, presence: true
   validates :answer_content, presence: true
