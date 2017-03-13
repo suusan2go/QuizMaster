@@ -22,6 +22,12 @@ class Api::QuizzesController < Api::ApplicationController
     end
   end
 
+  def destroy
+    quiz = current_user.quizzes.find(params[:id])
+    quiz.destroy
+    render_json props: {}, status: :no_content
+  end
+
   private
 
   def quiz_params

@@ -18,7 +18,7 @@
 class Quiz < ApplicationRecord
   enum status: { draft: 0, published: 10 }
 
-  has_many :questions, -> { order(id: :desc) }
+  has_many :questions, -> { order(id: :desc) }, dependent: :destroy
   has_many :answers, through: :questions
   belongs_to :user
 
