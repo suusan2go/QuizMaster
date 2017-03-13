@@ -4,10 +4,12 @@ import * as api from 'api';
 import {
   CREATE_QUIZ,
   UPDATE_QUIZ,
+  DELETE_QUIZ,
   createQuizSuccess,
   createQuizFailed,
   updateQuizSuccess,
   updateQuizFailed,
+  deleteQuizSuccess,
 } from 'actions/quizFormActionCreators';
 import {
   addWarningFlashMessage,
@@ -54,9 +56,21 @@ export function* handleUpdateQuiz(action) {
   }
 }
 
+export function* handleDeleteQuiz(action) {
+  try {
+    yield call(api.deleteQuiz, action.payload);
+    yield put(deleteQuizSuccess(action.payload));
+    yield put(addSuccessFlashMessage('Deleted'));
+    browserHistory.push('/user/quizzes');
+  } catch (error) {
+    // TODO: Error handling
+  }
+}
+
 export default function* diarySaga() {
   yield [
     takeEvery(CREATE_QUIZ, handleCreateQuiz),
     takeEvery(UPDATE_QUIZ, handleUpdateQuiz),
+    takeEvery(DELETE_QUIZ, handleDeleteQuiz),
   ];
 }

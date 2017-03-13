@@ -4,13 +4,15 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as myQuizActions from 'actions/myQuizActionCreators';
-import * as questionFormActionCreators from 'actions/questionFormActionCreators';
+import * as quizFormActions from 'actions/quizFormActionCreators';
+import * as questionFormActions from 'actions/questionFormActionCreators';
 
 const mapDispatchToProps = dispatch => (
   {
     actions: {
       ...bindActionCreators(myQuizActions, dispatch),
-      ...bindActionCreators(questionFormActionCreators, dispatch),
+      ...bindActionCreators(quizFormActions, dispatch),
+      ...bindActionCreators(questionFormActions, dispatch),
     },
   }
 );
@@ -21,7 +23,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 type Props = {
-  actions: { fetchMyQuiz: action, deleteQuestion: action },
+  actions: { fetchMyQuiz: action, deleteQuestion: action, deleteQuiz: action },
   myQuiz: {
     title: string, descriptn: string, id: string,
     questions: Array<{ id: string, content: string, answer_content: string }>
@@ -30,6 +32,11 @@ type Props = {
 }
 
 class myQuiz extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleDeleteQuiz = this.handleDeleteQuiz.bind(this);
+  }
+
   componentDidMount() {
     this.props.actions.fetchMyQuiz(this.props.params.id);
   }
@@ -38,6 +45,10 @@ class myQuiz extends React.Component {
     return () => {
       this.props.actions.deleteQuestion(questionID);
     };
+  }
+
+  handleDeleteQuiz() {
+    this.props.actions.deleteQuiz(this.props.myQuiz.id);
   }
 
   props: Props
@@ -60,8 +71,11 @@ class myQuiz extends React.Component {
               { quiz.title }
             </h1>
             <Link to={`/quizzes/${quiz.id}/edit`} className="btn btn-default float-right">
-              EDIT YOUR QUIZ
+              EDIT QUIZ
             </Link>
+            <button onClick={this.handleDeleteQuiz} className="btn btn-danger float-right">
+              DELETE QUIZ
+            </button>
             <div>
               <p>
                 { quiz.description }

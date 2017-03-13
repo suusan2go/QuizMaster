@@ -38,6 +38,10 @@ export function updateQuiz(quizId: string, values: { title: string, description:
   return sendPatch(`/api/quizzes/${quizId}`, { quiz: values });
 }
 
+export function deleteQuiz(quizId: string) {
+  return sendDelete(`/api/quizzes/${quizId}`);
+}
+
 export function myQuizzes() {
   return get('/api/user/quizzes');
 }

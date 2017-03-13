@@ -4,9 +4,15 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as myQuizzesActions from 'actions/myQuizzesActionCreators';
+import * as quizFormActions from 'actions/quizFormActionCreators';
 
 const mapDispatchToProps = dispatch => (
-  { actions: bindActionCreators(myQuizzesActions, dispatch) }
+  {
+    actions: {
+      ...bindActionCreators(myQuizzesActions, dispatch),
+      ...bindActionCreators(quizFormActions, dispatch),
+    },
+  }
 );
 
 const mapStateToProps = (state, ownProps) => ({
@@ -15,13 +21,19 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 type Props = {
-  actions: { fetchMyQuizzes: action },
+  actions: { fetchMyQuizzes: action, deleteQuiz: action },
   myQuizzes: Array<{ title: string, descriptn: string, id: string }>
 }
 
 class MyQuizzes extends React.Component {
   componentDidMount() {
     this.props.actions.fetchMyQuizzes();
+  }
+
+  handleDeleteQuiz(quizId: string) {
+    return () => {
+      this.props.actions.deleteQuiz(quizId);
+    };
   }
 
   props: Props
@@ -56,9 +68,9 @@ class MyQuizzes extends React.Component {
                         <Link to={`/user/quizzes/${quiz.id}`} className="btn btn-md btn-default">
                           <i className="fa fa-pencil" /> EDit
                         </Link>
-                        <Link className="btn btn-md btn-danger">
+                        <button className="btn btn-md btn-danger" onClick={this.handleDeleteQuiz(quiz.id)}>
                           <i className="fa fa-times" />Delete
-                        </Link>
+                        </button>
                       </div>
                     </div>
                     <p>{quiz.description}</p>
