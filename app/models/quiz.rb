@@ -24,4 +24,6 @@ class Quiz < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
+
+  scope :published, -> { joins(:questions).distinct }
 end

@@ -4,12 +4,14 @@ import flashMessages from './flashMessages';
 import currentUser from './currentUser';
 import myQuizzes from './myQuizzes';
 import myQuiz from './myQuiz';
+import quizzes from './quizzes';
 
 const rootReducer = combineReducers({
   flashMessages,
   currentUser,
   myQuizzes,
   myQuiz,
+  quizzes,
   form,
 });
 

@@ -6,14 +6,13 @@ import * as quizFormActions from 'actions/quizFormActionCreators';
 import QuestionForm from './Form';
 
 type Props = {
-  actions: { postQuiz: action },
+  actions: { createQuiz: action },
 }
 
 class QuizForm extends React.Component {
   props: Props
 
   render() {
-    const { actions } = this.props;
     return (
       <div>
         <Helmet
@@ -23,7 +22,7 @@ class QuizForm extends React.Component {
             { charset: 'utf-8' },
           ]}
         />
-        <QuestionForm onSubmit={actions.postQuiz} title="New Title" />
+        <QuestionForm onSubmit={this.props.actions.createQuiz} title="New Title" />
       </div>
     );
   }

@@ -30,6 +30,10 @@ function sendPost(url: string, data: Object) {
   return axiosClient.post(url, data).then(response => response.data);
 }
 
+export function quizzes() {
+  return get('/api/quizzes');
+}
+
 export function createQuiz(values: { title: string, description: string }) {
   return sendPost('/api/quizzes', { quiz: values });
 }

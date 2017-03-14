@@ -13,7 +13,9 @@ export default class CommonLayout extends React.Component {
       <div>
         <Header />
         <FlashMessages />
-        {this.props.children}
+        <div className="wrapper">
+          {this.props.children}
+        </div>
         <footer className="page-footer default-color-dark center-on-small-only">
           <div className="footer-copyright">
             <div className="container-fluid">

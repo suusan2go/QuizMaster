@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 class Api::QuizzesController < Api::ApplicationController
+  def index
+    quizzes = Quiz.published.order(id: :desc)
+    render_json props: QuizzesSerializer.new(model: quizzes).as_json
+  end
+
   def create
     quiz = Quiz.new(quiz_params)
     if quiz.save
