@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170312051048) do
+ActiveRecord::Schema.define(version: 20170313003514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,29 @@ ActiveRecord::Schema.define(version: 20170312051048) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quiz_id"], name: "index_quiz_questions_on_quiz_id", using: :btree
+  end
+
+  create_table "quiz_trial_user_answers", force: :cascade do |t|
+    t.integer  "quiz_trial_id",                 null: false
+    t.integer  "question_id",                   null: false
+    t.string   "content",                       null: false
+    t.boolean  "correct",       default: false, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["question_id"], name: "index_quiz_trial_user_answers_on_question_id", using: :btree
+    t.index ["quiz_trial_id", "question_id"], name: "index_quiz_trial_user_answers_on_quiz_trial_id_and_question_id", unique: true, using: :btree
+    t.index ["quiz_trial_id"], name: "index_quiz_trial_user_answers_on_quiz_trial_id", using: :btree
+  end
+
+  create_table "quiz_trials", force: :cascade do |t|
+    t.integer  "quiz_id",               null: false
+    t.integer  "user_id",               null: false
+    t.integer  "questions_count",       null: false
+    t.integer  "correct_answers_count"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["quiz_id"], name: "index_quiz_trials_on_quiz_id", using: :btree
+    t.index ["user_id"], name: "index_quiz_trials_on_user_id", using: :btree
   end
 
   create_table "quizzes", force: :cascade do |t|
@@ -71,6 +94,10 @@ ActiveRecord::Schema.define(version: 20170312051048) do
 
   add_foreign_key "quiz_question_answers", "quiz_questions", column: "question_id"
   add_foreign_key "quiz_questions", "quizzes"
+  add_foreign_key "quiz_trial_user_answers", "quiz_questions", column: "question_id"
+  add_foreign_key "quiz_trial_user_answers", "quiz_trials"
+  add_foreign_key "quiz_trials", "quizzes"
+  add_foreign_key "quiz_trials", "users"
   add_foreign_key "quizzes", "users"
   add_foreign_key "user_social_profiles", "users"
 end
