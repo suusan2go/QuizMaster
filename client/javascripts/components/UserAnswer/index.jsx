@@ -66,7 +66,7 @@ class UserAnswer extends React.Component {
                 <h1 className="modal-title">
                   Results
                 </h1>
-                <button type="button" className="close" onClick={UserAnswer.backToTrial}>
+                <button type="button" className="close" onClick={this.backToTrial}>
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
