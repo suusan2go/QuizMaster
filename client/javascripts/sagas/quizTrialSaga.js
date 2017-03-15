@@ -58,9 +58,9 @@ export function* handleSubmitQuizTrialAnswer(action) {
     browserHistory.push(`/user_answers/${payload.id}`);
   } catch (error) {
     yield put(removeAllFlashMessages());
-    if (error.response && error.response.data.validationErrors) {
+    if (error.response && error.response.data.validation_errors) {
       yield put(addWarningFlashMessage('Submission Failed'));
-      yield put(stopSubmit('quizTrialAnswerForm', error.response.data.validationErrors));
+      yield put(stopSubmit('quizTrialAnswerForm', error.response.data.validation_errors));
     }
   }
 }

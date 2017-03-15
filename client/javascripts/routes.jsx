@@ -34,11 +34,11 @@ export default function (store) {
       <Route component={Quizzes} path="/quizzes" onEnter={requireAuth} />
       <Route component={NewQuizForm} path="/quizzes/new" onEnter={requireAuth} />
       <Route component={EditQuizForm} path="/quizzes/:id/edit" onEnter={requireAuth} />
-      <Route component={MyQuizzes} path="/user/quizzes" onEnter={requireAuth} />
-      <Route component={MyQuiz} path="/user/quizzes/:id" onEnter={requireAuth} />
-      <Route component={MyQuiz} path="/user/quizzes/:id" onEnter={requireAuth} />
-      <Route component={NewQuestionForm} path="/user/quizzes/:id/questions/new" onEnter={requireAuth} />
-      <Route component={EditQuestionForm} path="/user/questions/:id/edit" onEnter={requireAuth} />
+      <Route component={MyQuizzes} path="/users/quizzes" onEnter={requireAuth} />
+      <Route component={MyQuiz} path="/users/quizzes/:id" onEnter={requireAuth} />
+      <Route component={MyQuiz} path="/users/quizzes/:id" onEnter={requireAuth} />
+      <Route component={NewQuestionForm} path="/users/quizzes/:id/questions/new" onEnter={requireAuth} />
+      <Route component={EditQuestionForm} path="/users/questions/:id/edit" onEnter={requireAuth} />
       <Route component={QuizTrial} path="/quiz_trials/:id" onEnter={requireAuth} />
       <Route component={QuizTrialResult} path="/quiz_trials/:id/result" onEnter={requireAuth} />
       <Route component={UserAnswer} path="/user_answers/:id" onEnter={requireAuth} />

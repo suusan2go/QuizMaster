@@ -31,9 +31,9 @@ export function* handleCreateQuestion(action) {
   } catch (error) {
     yield put(createQuestionFailed(error));
     yield put(removeAllFlashMessages());
-    if (error.response && error.response.data.validationErrors) {
+    if (error.response && error.response.data.validation_errors) {
       yield put(addWarningFlashMessage('Submission Failed'));
-      yield put(stopSubmit('questionForm', error.response.data.validationErrors));
+      yield put(stopSubmit('questionForm', error.response.data.validation_errors));
     }
   }
 }
@@ -52,9 +52,9 @@ export function* handleUpdateQuestion(action) {
   } catch (error) {
     yield put(updateQuestionFailed(error));
     yield put(removeAllFlashMessages());
-    if (error.response && error.response.data.validationErrors) {
+    if (error.response && error.response.data.validation_errors) {
       yield put(addWarningFlashMessage('Submission Failed'));
-      yield put(stopSubmit('questionForm', error.response.data.validationErrors));
+      yield put(stopSubmit('questionForm', error.response.data.validation_errors));
     }
   }
 }

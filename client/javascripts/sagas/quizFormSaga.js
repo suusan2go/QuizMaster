@@ -26,13 +26,13 @@ export function* handleCreateQuiz(action) {
     yield put(removeAllFlashMessages());
     yield put(addSuccessFlashMessage('Submission Succeeded'));
     yield put(reset('quizForm'));
-    browserHistory.push(`/user/quizzes/${payload.id}`);
+    browserHistory.push(`/users/quizzes/${payload.id}`);
   } catch (error) {
     yield put(createQuizFailed(error));
     yield put(removeAllFlashMessages());
-    if (error.response.data.validationErrors) {
+    if (error.response.data.validation_errors) {
       yield put(addWarningFlashMessage('Submission Failed'));
-      yield put(stopSubmit('quizForm', error.response.data.validationErrors));
+      yield put(stopSubmit('quizForm', error.response.data.validation_errors));
     }
   }
 }
@@ -49,9 +49,9 @@ export function* handleUpdateQuiz(action) {
   } catch (error) {
     yield put(updateQuizFailed(error));
     yield put(removeAllFlashMessages());
-    if (error.response.data.validationErrors) {
+    if (error.response.data.validation_errors) {
       yield put(addWarningFlashMessage('Submission Failed'));
-      yield put(stopSubmit('quizForm', error.response.data.validationErrors));
+      yield put(stopSubmit('quizForm', error.response.data.validation_errors));
     }
   }
 }
@@ -61,7 +61,7 @@ export function* handleDeleteQuiz(action) {
     yield call(api.deleteQuiz, action.payload);
     yield put(deleteQuizSuccess(action.payload));
     yield put(addSuccessFlashMessage('Deleted'));
-    browserHistory.push('/user/quizzes');
+    browserHistory.push('/users/quizzes');
   } catch (error) {
     // TODO: Error handling
   }

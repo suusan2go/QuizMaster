@@ -26,7 +26,7 @@ const Header = (props: Props) => {
           <div className="collapse navbar-collapse" id="navbarNav3">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link className="nav-link waves-effect waves-light" to="/user/quizzes">
+                <Link className="nav-link waves-effect waves-light" to="/users/quizzes">
                   <i className="fa fa-question" /> ManageQuizez
                 </Link>
               </li>

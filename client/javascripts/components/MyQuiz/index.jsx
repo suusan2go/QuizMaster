@@ -84,7 +84,7 @@ class myQuiz extends React.Component {
           </div>
           <div className="row">
             <div className="col-12 mb-1">
-              <Link to={`/user/quizzes/${quiz.id}/questions/new`} className="btn btn-primary float-right">
+              <Link to={`/users/quizzes/${quiz.id}/questions/new`} className="btn btn-primary float-right">
               ADD QESTION
             </Link>
             </div>
@@ -100,7 +100,7 @@ class myQuiz extends React.Component {
                         <p>{question.answer_content}</p>
                       </div>
                       <div className="col-sm-2">
-                        <Link to={`/user/questions/${question.id}/edit`} className="btn btn-md btn-block btn-default">Edit</Link>
+                        <Link to={`/users/questions/${question.id}/edit`} className="btn btn-md btn-block btn-default">Edit</Link>
                         <button type="button" className="btn btn-md btn-block btn-danger" onClick={this.handleDeleteQuestion(question.id)}>
                           Delete
                         </button>

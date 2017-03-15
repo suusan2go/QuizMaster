@@ -8,11 +8,10 @@ Rails.application.routes.draw do
         resource :result, only: [:show], module: :quiz_trials
       end
     end
-    resource :user, only: [] do
-      resources :quizzes, only: [:index, :show], module: :users do
-        resources :questions, only: [:create], module: :quizzes
+    namespace :users do
+      resources :quizzes, only: [:index, :show], shallow: true do
+        resources :questions, only: [:create, :update, :destroy], module: :quizzes
       end
-      resources :questions, only: [:update, :destroy], module: :users
     end
   end
   get '/auth/:action/callback', to: 'auths#callback'

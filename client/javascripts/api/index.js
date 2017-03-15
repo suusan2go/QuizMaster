@@ -47,23 +47,23 @@ export function deleteQuiz(quizId: string) {
 }
 
 export function myQuizzes() {
-  return get('/api/user/quizzes');
+  return get('/api/users/quizzes');
 }
 
 export function myQuiz(id: string) {
-  return get(`/api/user/quizzes/${id}`);
+  return get(`/api/users/quizzes/${id}`);
 }
 
 export function createQuestion(quizId: string, values: { content: string, answer_content: string}) {
-  return sendPost(`/api/user/quizzes/${quizId}/questions`, { question: values });
+  return sendPost(`/api/users/quizzes/${quizId}/questions`, { question: values });
 }
 
 export function updateQuestion(questionId: string, values: { content: string, answer_content: string}) {
-  return sendPatch(`/api/user/questions/${questionId}`, { question: values });
+  return sendPatch(`/api/users/questions/${questionId}`, { question: values });
 }
 
 export function deleteQuestion(questionId: string) {
-  return sendDelete(`/api/user/questions/${questionId}`);
+  return sendDelete(`/api/users/questions/${questionId}`);
 }
 
 export function startQuizTrial(quizId: string) {

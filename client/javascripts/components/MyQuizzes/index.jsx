@@ -65,7 +65,7 @@ class MyQuizzes extends React.Component {
                     <div className="d-flex w-100 justify-content-between">
                       <h3 className="mr-auto">{quiz.title}</h3>
                       <div className="d-flex justify-content-between">
-                        <Link to={`/user/quizzes/${quiz.id}`} className="btn btn-md btn-default">
+                        <Link to={`/users/quizzes/${quiz.id}`} className="btn btn-md btn-default">
                           <i className="fa fa-pencil" /> EDit
                         </Link>
                         <button className="btn btn-md btn-danger" onClick={this.handleDeleteQuiz(quiz.id)}>
