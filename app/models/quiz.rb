@@ -30,9 +30,11 @@ class Quiz < ApplicationRecord
   scope :published, -> { joins(:questions).distinct }
 
   def start_trial(user:)
+    quiz_trial = quiz_trials.on_going.find_by(user: user)
+    return quiz_trial if quiz_trial.present?
     quiz_trials.create(
-      user: user,
-      questions_count: questions.count
+      questions_count: quiz.questions.count,
+      user: user
     )
   end
 end

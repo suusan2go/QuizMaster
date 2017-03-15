@@ -17,6 +17,13 @@
 #
 
 class QuizTrial < ApplicationRecord
+  has_many :user_answers
   belongs_to :quiz
   belongs_to :user
+
+  scope :on_going, -> { all } # TODO add correct scope
+
+  def answered_question_ids
+    user_answers.select(:question_id)
+  end
 end
