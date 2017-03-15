@@ -27,6 +27,6 @@ class Api::QuizTrialsController < Api::ApplicationController
   private
 
   def find_current_user_quiz_trial
-    current_user.quiz_trials.on_going.find(params[:id])
+    current_user.quiz_trials.find(params[:id])
   end
 end

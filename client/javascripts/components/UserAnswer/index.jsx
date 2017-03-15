@@ -9,20 +9,29 @@ import * as UserAnswerActions from 'actions/userAnswerActionCreators';
 type Props = {
   params: { id: string },
   userAnswer: {
+    correct: boolean,
     content: string,
     answer_content: string,
     question_content: string,
-    quizTrialId: number,
+    quiz_trial_id: number,
+  },
+  actions: {
+    getUserAnswer: action
   }
 }
 
 class UserAnswer extends React.Component {
-  static backToTrial() {
-    browserHistory.goBack();
+  constructor(props) {
+    super(props);
+    this.backToTrial = this.backToTrial.bind(this);
   }
 
   componentWillMount() {
     this.props.actions.getUserAnswer(this.props.params.id);
+  }
+
+  backToTrial() {
+    browserHistory.push(`/quiz_trials/${this.props.userAnswer.quiz_trial_id}`);
   }
 
   flashMessage() {
@@ -46,7 +55,7 @@ class UserAnswer extends React.Component {
         <Modal
           isOpen
           onAfterOpen={this.afterOpenModal}
-          onRequestClose={UserAnswer.backToTrial}
+          onRequestClose={this.backToTrial}
           className="modal-open"
           overlayClassName="modal_overlay"
           contentLabel="Quiz Form Modal"
@@ -79,7 +88,7 @@ class UserAnswer extends React.Component {
                 </div>
               </div>
               <div className="modal-footer">
-                <button type="submit" className="btn btn-primary" onClick={UserAnswer.backToTrial}>Next</button>
+                <button type="submit" className="btn btn-primary" onClick={this.backToTrial}>Next</button>
               </div>
             </div>
           </div>
