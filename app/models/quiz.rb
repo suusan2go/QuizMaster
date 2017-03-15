@@ -20,10 +20,19 @@ class Quiz < ApplicationRecord
 
   has_many :questions, -> { order(id: :desc) }, dependent: :destroy
   has_many :answers, through: :questions
+  has_many :quiz_trials
   belongs_to :user
 
   validates :title, presence: true
   validates :description, presence: true
 
+  # TODO: handle by status
   scope :published, -> { joins(:questions).distinct }
+
+  def start_trial(user:)
+    quiz_trials.create(
+      user: user,
+      questions_count: questions.count
+    )
+  end
 end
