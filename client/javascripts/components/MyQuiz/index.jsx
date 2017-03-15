@@ -95,7 +95,7 @@ class myQuiz extends React.Component {
                     <div className="list-group-item list-group-item-action align-items-start">
                       <div className="col-sm-10 justify-content-between">
                         <h3 className="mr-auto">Question</h3>
-                        <p>{question.content}</p>
+                        <div className="mb-2" dangerouslySetInnerHTML={{ __html: question.content }} />
                         <h3 className="mr-auto">Answer</h3>
                         <p>{question.answer_content}</p>
                       </div>
