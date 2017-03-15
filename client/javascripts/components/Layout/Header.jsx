@@ -27,7 +27,7 @@ const Header = (props: Props) => {
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
                 <Link className="nav-link waves-effect waves-light" to="/users/quizzes">
-                  <i className="fa fa-question" /> ManageQuizez
+                  <i className="fa fa-question" /> ManageQuizzes
                 </Link>
               </li>
               <li className="nav-item">

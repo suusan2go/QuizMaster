@@ -42,7 +42,7 @@ class Quizzes extends React.Component {
     return (
       <div>
         <Helmet
-          title="Quizes | QuizMaster"
+          title="Quizzes | QuizMaster"
           description="QuizMaster quizez"
           meta={[
             { charset: 'utf-8' },
@@ -51,7 +51,7 @@ class Quizzes extends React.Component {
         <div className="container">
           <div className="page-header">
             <h1 className="h1-responsive d-inline-block">
-              Quizez
+              Quizzes
             </h1>
             <Link to="/quizzes/new" className="btn btn-md btn-primary float-right">
               Create Your New Quiz !

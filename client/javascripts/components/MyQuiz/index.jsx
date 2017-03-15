@@ -59,7 +59,7 @@ class myQuiz extends React.Component {
     return (
       <div>
         <Helmet
-          title="MyQuizes | QuizMaster"
+          title="MyQuizzes | QuizMaster"
           description="QuizMaster My quizez"
           meta={[
             { charset: 'utf-8' },
