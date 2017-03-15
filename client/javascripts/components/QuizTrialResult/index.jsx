@@ -24,9 +24,10 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 class QuizTrialResult extends React.Component {
-  componentDidMount() {
+  componentDidUpdate() {
     const correctAnswersCount = this.props.quizTrialResult.correct_answers_count;
     const answeredQuestionsCount = this.props.quizTrialResult.answered_questions_count;
+    if (this.chart) this.chart.destory();
     this.chart = new Chart(this.chartCanvas, {
       type: 'pie',
       data: {
