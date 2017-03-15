@@ -9,9 +9,11 @@ import Form from './Form';
 type Props = {
   params: { id: string },
   quizTrial: {
-    id: string,
+    id: number,
+    questions_count: number,
+    rest_questions_count: number,
     next_question: {
-      id: string,
+      id: number,
       content: string,
     }
   },
@@ -52,6 +54,10 @@ class QuizTrial extends React.Component {
   props: Props
 
   render() {
+    const questionsCount = this.props.quizTrial.questions_count;
+    const ariaValueMax = questionsCount;
+    const ariaValueNow = questionsCount - this.props.quizTrial.rest_questions_count;
+    const percentage = (ariaValueNow / ariaValueMax) * 100;
     return (
       <div>
         <Helmet
@@ -66,7 +72,10 @@ class QuizTrial extends React.Component {
             <h1 className="h1-responsive">Quiz Trial</h1>
           </div>
           <div className="progress mb-1">
-            <div className="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" />
+            <div
+              className="progress-bar" role="progressbar"
+              aria-valuenow={ariaValueNow} aria-valuemin="0" aria-valuemax={ariaValueMax} style={{ width: `${percentage}%` }}
+            />
           </div>
           <div className="row">
             <div className="col-sm-12">
