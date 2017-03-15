@@ -4,9 +4,10 @@ import * as api from 'api';
 import {
   START_QUIZ_TRIAL,
   GET_QUIZ_TRIAL,
+  GET_QUIZ_TRIAL_RESULT,
   SUBMIT_QUIZ_TRIAL_ANSWER,
   getQuizTrialSuccess,
-  submitQuizTrialAnswerSuccess,
+  getQuizTrialResultSuccess,
 } from 'actions/quizTrialActionCreators';
 import {
   addWarningFlashMessage,
@@ -26,7 +27,20 @@ export function* handleStartQuizTrial(action) {
 export function* handleGetQuizTrial(action) {
   try {
     const payload = yield call(api.getQuizTrial, action.payload);
-    yield put(getQuizTrialSuccess(payload));
+    if (payload.next_question === null) {
+      browserHistory.push(`/quiz_trials/${payload.id}/result`);
+    } else {
+      yield put(getQuizTrialSuccess(payload));
+    }
+  } catch (error) {
+    // TODO: error handling
+  }
+}
+
+export function* handleGetQuizTrialResult(action) {
+  try {
+    const payload = yield call(api.quizTrialResult, action.payload);
+    yield put(getQuizTrialResultSuccess(payload));
   } catch (error) {
     // TODO: error handling
   }
@@ -55,6 +69,7 @@ export default function* myQuizzesSaga() {
   yield [
     takeLatest(START_QUIZ_TRIAL, handleStartQuizTrial),
     takeEvery(GET_QUIZ_TRIAL, handleGetQuizTrial),
+    takeEvery(GET_QUIZ_TRIAL_RESULT, handleGetQuizTrialResult),
     takeLatest(SUBMIT_QUIZ_TRIAL_ANSWER, handleSubmitQuizTrialAnswer),
   ];
 }

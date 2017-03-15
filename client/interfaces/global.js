@@ -15,3 +15,7 @@ declare module 'redux-logger' {
 declare module 'react-router' {
   declare var exports: any;
 }
+
+declare module 'redux-async-loader' {
+  declare var exports: any;
+}

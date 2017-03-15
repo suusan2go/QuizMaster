@@ -35,6 +35,14 @@ class QuizTrial < ApplicationRecord
     quiz.questions.count
   end
 
+  def answered_questions_count
+    user_answers.count
+  end
+
+  def correct_answers_count
+    user_answers.correct.count
+  end
+
   def rest_questions
     quiz.questions.where.not(id: answered_question_ids)
   end

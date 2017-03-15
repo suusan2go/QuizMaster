@@ -15,7 +15,7 @@ class QuizTrial::ContentsSerializer < ApplicationSerializer
   end
 
   def next_question
-    return unless next_question
+    return unless model.next_question
     {
       id: model.next_question.id,
       content: model.next_question.content

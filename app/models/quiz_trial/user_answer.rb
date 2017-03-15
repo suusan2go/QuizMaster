@@ -21,6 +21,8 @@ class QuizTrial::UserAnswer < ApplicationRecord
   belongs_to :quiz_trial
   belongs_to :question, class_name: Quiz::Question.name
 
+  scope :correct, -> { where(correct: true) }
+
   delegate :content, to: :question, prefix: true
   delegate :answer_content, to: :question
 

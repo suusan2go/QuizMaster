@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   namespace :api do
     resources :quizzes, only: [:index, :create, :update, :destroy] do
       resources :quiz_trials, only: [:show, :create, :update], shallow: true do
-        resources :user_answers, only: [:create], module: :quiz_trials
+        resources :user_answers, only: [:show, :create], module: :quiz_trials
+        resource :result, only: [:show], module: :quiz_trials
       end
     end
     resource :user, only: [] do
