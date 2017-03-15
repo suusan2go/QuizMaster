@@ -96,6 +96,7 @@ services:
       - ./log:/app/log
       - bundle:/bundle
       - ./tmp:/app/tmp
+      - ./spec:/app/spec
     ports:
       - "3000:3000"
 volumes:
