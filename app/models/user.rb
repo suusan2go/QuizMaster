@@ -18,6 +18,7 @@
 class User < ApplicationRecord
   has_many :quiz_trials
   has_many :quizzes
+  has_many :user_answers, class_name: QuizTrial::UserAnswer.name, through: :quiz_trials
   has_many :questions, through: :quizzes, class_name: Quiz::Question.name
 
   class << self
