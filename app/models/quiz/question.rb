@@ -29,4 +29,9 @@ class Quiz::Question < ApplicationRecord
     a = answer || build_answer
     a.content = value
   end
+
+  # TODO: Normalize and format numbers
+  def correct_answer?(content:)
+    answer_content == content
+  end
 end

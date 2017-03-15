@@ -19,8 +19,10 @@
 
 class QuizTrial::UserAnswer < ApplicationRecord
   belongs_to :quiz_trial
-  belongs_to :question
+  belongs_to :question, class_name: Quiz::Question.name
 
   delegate :content, to: :question, prefix: true
   delegate :answer_content, to: :question
+
+  validates :content, presence: true
 end

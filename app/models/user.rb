@@ -16,7 +16,7 @@
 #
 
 class User < ApplicationRecord
-  has_many :quiz_traials
+  has_many :quiz_trials
   has_many :quizzes
   has_many :questions, through: :quizzes, class_name: Quiz::Question.name
 

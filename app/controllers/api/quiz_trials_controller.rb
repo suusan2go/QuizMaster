@@ -2,7 +2,7 @@
 class Api::QuizTrialsController < Api::ApplicationController
   def show
     quiz_trial = find_current_user_quiz_trial
-    render_json props: QiizTrial::ContentsSerializer.new(model: quiz_trial).as_json
+    render_json props: QuizTrial::ContentsSerializer.new(model: quiz_trial).as_json
   end
 
   def create
@@ -27,6 +27,6 @@ class Api::QuizTrialsController < Api::ApplicationController
   private
 
   def find_current_user_quiz_trial
-    current_user.quiz_traials.on_going.find(params[:id])
+    current_user.quiz_trials.on_going.find(params[:id])
   end
 end
