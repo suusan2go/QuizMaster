@@ -65,3 +65,7 @@ export function updateQuestion(questionId: string, values: { content: string, an
 export function deleteQuestion(questionId: string) {
   return sendDelete(`/api/user/questions/${questionId}`);
 }
+
+export function startQuizTrial(quizId: string) {
+  return sendPost(`/api/quzzies/${quizId}/quiz_traials`);
+}
