@@ -2,13 +2,11 @@
 #
 # Table name: quiz_trials
 #
-#  id                    :integer          not null, primary key
-#  quiz_id               :integer          not null
-#  user_id               :integer          not null
-#  questions_count       :integer          not null
-#  correct_answers_count :integer
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
+#  id         :integer          not null, primary key
+#  quiz_id    :integer          not null
+#  user_id    :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 # Indexes
 #
@@ -31,6 +29,10 @@ class QuizTrial < ApplicationRecord
 
   def next_question
     rest_questions.order(id: :desc).first
+  end
+
+  def questions_count
+    quiz.questions.count
   end
 
   def rest_questions

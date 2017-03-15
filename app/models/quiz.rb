@@ -33,7 +33,6 @@ class Quiz < ApplicationRecord
     quiz_trial = quiz_trials.on_going.find_by(user: user)
     return quiz_trial if quiz_trial.present?
     quiz_trials.create(
-      questions_count: quiz.questions.count,
       user: user
     )
   end
