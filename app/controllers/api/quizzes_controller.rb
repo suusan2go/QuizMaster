@@ -8,10 +8,8 @@ class Api::QuizzesController < Api::ApplicationController
   def create
     quiz = Quiz.new(quiz_params)
     if quiz.save
-      # TODO: create QuizSerializer Class
-      render_json props: quiz.as_json
+      render_json props: QuizSerializer.new(model: quiz).as_json
     else
-      # TODO: create ValidationErrorsSerializer Class
       render_json props: ValidationErrorsSerializer.new(model: quiz).as_json, status: :unprocessable_entity
     end
   end
@@ -19,10 +17,8 @@ class Api::QuizzesController < Api::ApplicationController
   def update
     quiz = current_user.quizzes.find(params[:id])
     if quiz.update(quiz_params)
-      # TODO: create QuizSerializer Class
-      render_json props: quiz.as_json
+      render_json props: QuizSerializer.new(model: quiz).as_json
     else
-      # TODO: create ValidationErrorsSerializer Class
       render_json props: ValidationErrorsSerializer.new(model: quiz).as_json, status: :unprocessable_entity
     end
   end
