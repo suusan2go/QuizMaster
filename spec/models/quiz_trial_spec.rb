@@ -2,11 +2,13 @@
 #
 # Table name: quiz_trials
 #
-#  id         :integer          not null, primary key
-#  quiz_id    :integer          not null
-#  user_id    :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  quiz_id     :integer          not null
+#  user_id     :integer          not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  finished_at :datetime
+#  status      :integer          default("0"), not null
 #
 # Indexes
 #

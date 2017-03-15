@@ -7,8 +7,9 @@ class Api::QuizTrials::UserAnswersController < Api::ApplicationController
 
   def create
     quiz_trial = current_user.quiz_trials.find(params[:quiz_trial_id])
-    user_answer = quiz_trial.checking_answer(user_answer_params)
+    user_answer = quiz_trial.check_answer(user_answer_params)
     if user_answer.valid?
+      quiz_trial.finish_if_no_rest_questions
       render_json props: QuizTrial::UserAnswerSerializer.new(model: user_answer).as_json
     else
       render_json props: ValidationErrorsSerializer.new(model: user_answer).as_json, status: :unprocessable_entity

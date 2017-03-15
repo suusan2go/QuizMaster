@@ -29,6 +29,6 @@ class QuizTrial::ContentsSerializer < ApplicationSerializer
   end
 
   def completed
-    model.completed?
+    model.finished?
   end
 end

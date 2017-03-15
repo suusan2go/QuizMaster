@@ -2,11 +2,13 @@
 #
 # Table name: quiz_trials
 #
-#  id         :integer          not null, primary key
-#  quiz_id    :integer          not null
-#  user_id    :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  quiz_id     :integer          not null
+#  user_id     :integer          not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  finished_at :datetime
+#  status      :integer          default("0"), not null
 #
 # Indexes
 #
@@ -15,17 +17,12 @@
 #
 
 class QuizTrial < ApplicationRecord
+  enum status: { on_going: 0, finished: 10 }
+
   has_many :user_answers
   has_many :questions, through: :quiz, class_name: Quiz::Question.name
   belongs_to :quiz
   belongs_to :user
-
-  scope :on_going, -> { all } # TODO add correct scope
-
-  # TODO: implement
-  def completed?
-    true
-  end
 
   def next_question
     rest_questions.order(id: :desc).first
@@ -47,13 +44,23 @@ class QuizTrial < ApplicationRecord
     quiz.questions.where.not(id: answered_question_ids)
   end
 
-  def checking_answer(question_id:, content:)
+  def check_answer(question_id:, content:)
     question = rest_questions.find(question_id)
-    user_answers.create(
+    user_answer = user_answers.create(
       question: question,
       content: content,
       correct: question.correct_answer?(content: content)
     )
+    user_answer
+  end
+
+  def finish_if_no_rest_questions
+    finish if rest_questions.blank?
+  end
+
+  def finish
+    self.finished_at = Time.current
+    finished!
   end
 
   private
