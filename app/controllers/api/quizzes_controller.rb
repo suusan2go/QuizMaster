@@ -12,7 +12,7 @@ class Api::QuizzesController < Api::ApplicationController
       render_json props: quiz.as_json
     else
       # TODO: create ValidationErrorsSerializer Class
-      render_json props: { validationErrors: Hash[*quiz.errors.keys.flat_map{ |k| [k, quiz.errors.full_messages_for(k) ] }] }, status: :unprocessable_entity
+      render_json props: ValidationErrorsSerializer.new(model: quiz).as_json, status: :unprocessable_entity
     end
   end
 
@@ -23,7 +23,7 @@ class Api::QuizzesController < Api::ApplicationController
       render_json props: quiz.as_json
     else
       # TODO: create ValidationErrorsSerializer Class
-      render_json props: { validationErrors: Hash[*quiz.errors.keys.flat_map{ |k| [k, quiz.errors.full_messages_for(k) ] }] }, status: :unprocessable_entity
+      render_json props: ValidationErrorsSerializer.new(model: quiz).as_json, status: :unprocessable_entity
     end
   end
 

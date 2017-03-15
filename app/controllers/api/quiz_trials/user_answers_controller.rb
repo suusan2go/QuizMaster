@@ -11,7 +11,7 @@ class Api::QuizTrials::UserAnswersController < Api::ApplicationController
     if user_answer.valid?
       render_json props: QuizTrial::UserAnswerSerializer.new(model: user_answer).as_json
     else
-      render_json props: { validationErrors: Hash[*user_answer.errors.keys.flat_map{ |k| [k, user_answer.errors.full_messages_for(k) ] }] }, status: :unprocessable_entity
+      render_json props: ValidationErrorsSerializer.new(model: user_answer).as_json, status: :unprocessable_entity
     end
   end
 
