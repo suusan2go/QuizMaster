@@ -1,13 +1,13 @@
 import { handleActions } from 'redux-actions';
-import * as quizTrialActions from 'actions/quizTrialActionCreators';
+import * as userAnswerActions from 'actions/userAnswerActionCreators';
 
 const userAnswer = handleActions({
-  [quizTrialActions.SUBMIT_QUIZ_TRIAL_ANSWER_SUCCESS]: (state, action) => {
+  [userAnswerActions.GET_USER_ANSWER_SUCCESS]: (state, action) => {
     const {
-      content, answer_content, correct,
+      content, answer_content, question_content, correct, id,
     } = action.payload;
-    return { content, answer_content, correct };
+    return { content, answer_content, question_content, correct, id };
   },
-}, { content: '', answer_content: '', correct: false });
+}, { id: '', content: '', answer_content: '', correct: false });
 
 export default userAnswer;

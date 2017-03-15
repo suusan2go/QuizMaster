@@ -11,6 +11,7 @@ import NewQuestionForm from 'components/QuestionForm/NewQuestionForm';
 import EditQuestionForm from 'components/QuestionForm/EditQuestionForm';
 import QuizTrial from 'components/QuizTrial';
 import QuizTrialResult from 'components/QuizTrialResult';
+import UserAnswer from 'components/UserAnswer';
 
 export default function (store) {
   const currentUser = store.getState().currentUser;
@@ -40,6 +41,7 @@ export default function (store) {
       <Route component={EditQuestionForm} path="/user/questions/:id/edit" onEnter={requireAuth} />
       <Route component={QuizTrial} path="/quiz_trials/:id" onEnter={requireAuth} />
       <Route component={QuizTrialResult} path="/quiz_trials/:id/result" onEnter={requireAuth} />
+      <Route component={UserAnswer} path="/user_answers/:id" onEnter={requireAuth} />
     </Route>
   );
 }

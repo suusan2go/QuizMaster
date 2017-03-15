@@ -40,10 +40,9 @@ export function* handleSubmitQuizTrialAnswer(action) {
       action.payload.quizTrialId,
       action.payload.values,
     );
-    yield put(submitQuizTrialAnswerSuccess(payload));
     yield put(reset('quizTrialAnswerForm'));
+    browserHistory.push(`/user_answers/${payload.id}`);
   } catch (error) {
-    yield console.log(error);
     yield put(removeAllFlashMessages());
     if (error.response && error.response.data.validationErrors) {
       yield put(addWarningFlashMessage('Submission Failed'));

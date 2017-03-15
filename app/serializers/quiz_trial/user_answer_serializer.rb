@@ -2,7 +2,9 @@
 class QuizTrial::UserAnswerSerializer < ApplicationSerializer
   property(:content)
   property(:answer_content)
+  property(:question_content)
   property(:correct)
+  property(:id)
 
-  delegate :content, :answer_content, :correct, to: :model
+  delegate :content, :answer_content, :correct, :question_content, :id, to: :model
 end

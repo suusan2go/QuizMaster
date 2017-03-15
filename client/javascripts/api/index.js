@@ -77,3 +77,7 @@ export function getQuizTrial(quizTrialId: string) {
 export function submitQuizTrialAnswer(quizTrialId: string, values: { content: string, questionId: string }) {
   return sendPost(`/api/quiz_trials/${quizTrialId}/user_answers`, { user_answer: values });
 }
+
+export function userAnswer(id: number) {
+  return get(`/api/user_answers/${id}`);
+}
