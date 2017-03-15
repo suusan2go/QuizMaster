@@ -1,12 +1,60 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as quizTrialActions from 'actions/quizTrialActionCreators';
+import Form from './Form';
 
-export default class Top extends React.Component {
+type Props = {
+  params: { id: string },
+  quizTrial: {
+    id: string,
+    next_question: {
+      id: string,
+      content: string,
+    }
+  },
+  actions: {
+    getQuizTrial: action,
+    submitQuizTrialAnswer: action,
+  }
+}
+
+const mapDispatchToProps = dispatch => (
+  { actions: bindActionCreators(quizTrialActions, dispatch) }
+);
+
+const mapStateToProps = (state, ownProps) => ({
+  quizTrial: state.quizTrial,
+  ownProps,
+});
+
+class QuizTrial extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.actions.getQuizTrial(this.props.params.id);
+  }
+
+  handleSubmit(values) {
+    this.props.actions.submitQuizTrialAnswer({
+      quizTrialId: this.props.quizTrial.id,
+      values: {
+        question_id: this.props.quizTrial.next_question.id,
+        ...values,
+      } });
+  }
+
+  props: Props
+
   render() {
     return (
       <div>
         <Helmet
-          title="Quiz Trial! | QuizMaster"
+          title="Quiz Trial | QuizMaster"
           description="QuizMaster quiz trial"
           meta={[
             { charset: 'utf-8' },
@@ -23,16 +71,8 @@ export default class Top extends React.Component {
             <div className="col-sm-12">
               <div className="card">
                 <div className="card-block">
-                  <p>elibaegagaegagefagagearaegaegabaega  gagaera gagaeag</p>
-                  <form className="form-inline float-right">
-                    <div className="md-form form-group">
-                      <input type="text" id="answer" className="form-control" placeholder="Type Your Answer" />
-                      <label htmlFor="answer" className="active">Answer.</label>
-                    </div>
-                    <div className="md-form form-group">
-                      <a href="" className="btn btn-primary btn-lg">Submit</a>
-                    </div>
-                  </form>
+                  <div className="mb-2" dangerouslySetInnerHTML={{ __html: this.props.quizTrial.next_question.content }} />
+                  <Form onSubmit={this.handleSubmit} initialValues={{ content: '' }} />
                 </div>
               </div>
             </div>
@@ -42,3 +82,5 @@ export default class Top extends React.Component {
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuizTrial);

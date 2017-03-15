@@ -69,3 +69,11 @@ export function deleteQuestion(questionId: string) {
 export function startQuizTrial(quizId: string) {
   return sendPost(`/api/quizzes/${quizId}/quiz_trials`, {});
 }
+
+export function getQuizTrial(quizTrialId: string) {
+  return get(`/api/quiz_trials/${quizTrialId}`);
+}
+
+export function submitQuizTrialAnswer(quizTrialId: string, values: { content: string, questionId: string }) {
+  return sendPost(`/api/quiz_trials/${quizTrialId}/user_answers`, { user_answer: values });
+}

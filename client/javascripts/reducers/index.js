@@ -5,6 +5,8 @@ import currentUser from './currentUser';
 import myQuizzes from './myQuizzes';
 import myQuiz from './myQuiz';
 import quizzes from './quizzes';
+import quizTrial from './quizTrial';
+import userAnswer from './userAnswer';
 
 const rootReducer = combineReducers({
   flashMessages,
@@ -12,6 +14,8 @@ const rootReducer = combineReducers({
   myQuizzes,
   myQuiz,
   quizzes,
+  quizTrial,
+  userAnswer,
   form,
 });
 
