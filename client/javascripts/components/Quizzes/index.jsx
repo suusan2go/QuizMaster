@@ -4,11 +4,13 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as quizzesActions from 'actions/quizzesActionCreators';
+import * as quizTrialActions from 'actions/quizTrialActionCreators';
 
 const mapDispatchToProps = dispatch => (
   {
     actions: {
       ...bindActionCreators(quizzesActions, dispatch),
+      ...bindActionCreators(quizTrialActions, dispatch),
     },
   }
 );
@@ -19,13 +21,19 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 type Props = {
-  actions: { getQuizzes: action },
+  actions: { getQuizzes: action, startQuizTrial: action },
   quizzes: Array<{ title: string, descriptn: string, id: string }>
 }
 
 class Quizzes extends React.Component {
   componentWillMount() {
     this.props.actions.getQuizzes();
+  }
+
+  handleClickQuiz(quizId: string) {
+    return () => {
+      this.props.actions.startQuizTrial(quizId);
+    };
   }
 
   props: Props
@@ -52,8 +60,8 @@ class Quizzes extends React.Component {
           <div className="row no-gutters ">
             {
               this.props.quizzes.map(quiz => (
-                <div className="col-sm-6">
-                  <Link to="hoge" className="border list-group-item list-group-item-action">
+                <div className="col-sm-6" key={quiz.id}>
+                  <button className="border list-group-item list-group-item-action" onClick={this.handleClickQuiz(quiz.id)}>
                     <div className="media">
                       <img className="rounded-circle d-flex mr-3" alt={quiz.title} src={quiz.image_url} />
                       <div className="media-body">
@@ -61,7 +69,7 @@ class Quizzes extends React.Component {
                         {quiz.description}
                       </div>
                     </div>
-                  </Link>
+                  </button>
                 </div>
               ))
             }

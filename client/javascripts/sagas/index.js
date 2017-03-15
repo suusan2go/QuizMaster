@@ -3,6 +3,7 @@ import myQuizzesSaga from './myQuizzesSaga';
 import quizzesSaga from './quizzesSaga';
 import myQuizSaga from './myQuizSaga';
 import questionFormSaga from './questionFormSaga';
+import quizTrialSaga from './quizTrialSaga';
 
 export default function* rootSaga() {
   yield [
@@ -11,6 +12,7 @@ export default function* rootSaga() {
     quizzesSaga(),
     myQuizSaga(),
     questionFormSaga(),
+    quizTrialSaga(),
     // diaryEntryFormSaga(),
     // diaryEntryListSaga(),
     // authSaga(),

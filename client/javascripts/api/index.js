@@ -67,5 +67,5 @@ export function deleteQuestion(questionId: string) {
 }
 
 export function startQuizTrial(quizId: string) {
-  return sendPost(`/api/quzzies/${quizId}/quiz_traials`);
+  return sendPost(`/api/quizzes/${quizId}/quiz_trials`, {});
 }
