@@ -42,12 +42,12 @@ class QuizTrialResult extends React.Component {
               answeredQuestionsCount - correctAnswersCount,
             ],
             backgroundColor: [
-              '#FF6384',
               '#36A2EB',
+              '#FF6384',
             ],
             hoverBackgroundColor: [
-              '#FF6384',
               '#36A2EB',
+              '#FF6384',
             ],
           },
         ],
