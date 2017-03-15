@@ -52,8 +52,3 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
-
-require 'hypernova'
-require 'hypernova/plugins/development_mode_plugin'
-
-Hypernova.add_plugin!(DevelopmentModePlugin.new)

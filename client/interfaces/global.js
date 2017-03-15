@@ -4,10 +4,6 @@ declare module CSSModule {
   declare var exports: { [key: string]: string };
 }
 
-declare module 'hypernova-react' {
-  declare var exports: any;
-}
-
 declare module 'redux-logger' {
   declare var exports: any;
 }

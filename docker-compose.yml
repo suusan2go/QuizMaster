@@ -6,11 +6,11 @@ services:
     image: postgres:9.6.1-alpine
     ports:
       - "5432:5432"
-  webpack-client: &node
+  webpack: &node
     build:
       context: ./
       dockerfile: ./docker/node/Dockerfile
-    command: yarn run dev:client
+    command: yarn run dev
     ports:
       - "3500:3500"
     volumes:
@@ -18,35 +18,11 @@ services:
       - ./client:/app/client
       - ./package.json:/app/package.json
       - ./public/assets:/app/public/assets
-      - ./webpack.config.client.js:/app/webpack.config.client.js
+      - ./webpack.config.js:/app/webpack.config.js
       - ./yarn.lock:/app/yarn.lock
       - ./.flowconfig:/app/.flowconfig
       - ./flow-typed:/app/flow-typed
       - node_modules:/app/node_modules
-  webpack-server:
-    <<: *node
-    build:
-      context: ./
-      dockerfile: ./docker/node/Dockerfile
-    command: yarn run dev:server
-    ports: []
-    volumes:
-      - ./.eslintrc:/app/.eslintrc
-      - ./client:/app/client
-      - ./package.json:/app/package.json
-      - ./hypernova:/app/hypernova
-      - ./webpack.config.server.js:/app/webpack.config.server.js
-      - node_modules:/app/node_modules
-  hypernova:
-    <<: *node
-    ports:
-      - "3030:3030"
-    volumes:
-      - ./hypernova:/app/hypernova
-      - ./client:/app/client
-      - ./package.json:/app/package.json
-      - node_modules:/app/node_modules
-    command: yarn run hypernova
   redis:
     image: redis:3.2.6-alpine
     ports:
@@ -99,6 +75,8 @@ services:
       - ./spec:/app/spec
     ports:
       - "3000:3000"
+    tty: true
+    stdin_open: true
 volumes:
   bundle:
   node_modules:

@@ -82,8 +82,6 @@ GEM
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hashie (3.5.5)
-    hypernova (1.2.0)
-      faraday (~> 0.8)
     i18n (0.8.1)
     json (2.0.3)
     json_world (0.2.5)
@@ -281,7 +279,6 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   factory_girl
-  hypernova
   json_world
   letter_opener_web
   listen (~> 3.0.5)

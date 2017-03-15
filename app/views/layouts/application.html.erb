@@ -7,10 +7,7 @@
   </head>
 
   <body>
-    <div class="app-root">
-      <% #TODO serialize %>
-      <%= render_react_component('AppRouter', location: request.url, current_user: current_user.as_json) %>
-    </div>
+    <div id="app-root" data-react-props="<%= current_user.to_json %>"></div>
     <%= javascript_include_tag webpack_asset_path('bundle.js') %>
   </body>
 </html>

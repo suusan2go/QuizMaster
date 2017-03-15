@@ -1,8 +1,8 @@
 // @flow
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, applyRouterMiddleware, browserHistory } from 'react-router';
-import { renderReact } from 'hypernova-react';
 import { useAsyncLoader } from 'redux-async-loader';
 import 'stylesheets/bundle.scss';
 
@@ -24,4 +24,7 @@ const AppRouter = (props: { current_user: any }) => {
   );
 };
 
-export default renderReact('AppRouter', AppRouter);
+const node = document.getElementById('app-root');
+const propsJson = node.getAttribute('data-react-props');
+const props = JSON.parse(propsJson);
+ReactDOM.render(<AppRouter {...props} />, node);
