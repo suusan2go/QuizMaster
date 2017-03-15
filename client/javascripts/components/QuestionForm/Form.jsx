@@ -1,13 +1,16 @@
 import React from 'react';
 import Modal from 'react-modal';
+import ReactQuill from 'react-quill';
 import { browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
+
+import 'react-quill/dist/quill.snow.css';
 
 const contentInput = (field) => {
   const hasError = field.meta.error && field.meta.error.length !== 0;
   return (
     <div className={`md-form ${hasError && 'has-danger'}`}>
-      <textarea
+      <ReactQuill
         placeholder="How many letters are there in the English alphabet?"
         type="text"
         id="form5"
@@ -63,7 +66,7 @@ class QuestionForm extends React.Component {
         overlayClassName="modal_overlay"
         contentLabel="Quiz Form Modal"
       >
-        <div className="modal-dialog" role="document">
+        <div className="modal-dialog modal-lg" role="document">
           <form onSubmit={handleSubmit}>
             <div className="modal-content">
               <div className="modal-header">
@@ -72,7 +75,7 @@ class QuestionForm extends React.Component {
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div className="modal-body">
+              <div className="modal-body mt-1">
                 <Field name="content" component={contentInput} />
                 <Field name="answer_content" component={answerInput} />
               </div>
