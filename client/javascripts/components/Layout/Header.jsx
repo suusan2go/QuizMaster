@@ -9,37 +9,61 @@ type Props = {
   actions: { requestSignOut: Action }
 }
 
-const Header = (props: Props) => {
-  const currentUser = props.currentUser;
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { open: false };
+
+    this.handleClickButton = this.handleClickButton.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
+  }
+
+  handleClickButton() {
+    this.setState({ open: !this.state.open });
+  }
+
+  closeMenu() {
+    this.setState({ open: false });
+  }
+
+  props: Props
+
+  render() {
   // const { actions: { requestSignOut } } = props;
-  return (
-    <nav className="navbar navbar-toggleable-md navbar-dark default-color">
-      <div className="container">
-        <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon" />
-        </button>
-        <Link className="navbar-brand" to="/">
-          <strong>QuizMaster</strong>
-        </Link>
-        {
+    const currentUser = this.props.currentUser;
+    return (
+      <nav className="navbar navbar-toggleable-md navbar-dark default-color">
+        <div className="container">
+          <button
+            className="navbar-toggler navbar-toggler-right"
+            type="button" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation"
+            onClick={this.handleClickButton}
+          >
+            <span className="navbar-toggler-icon" />
+          </button>
+          <Link className="navbar-brand" to="/" onClick={this.closeMenu} >
+            <strong>QuizMaster</strong>
+          </Link>
+          {
           currentUser &&
-          <div className="collapse navbar-collapse" id="navbarNav3">
+          <div className={`collapse navbar-collapse ${this.state.open && 'show'}`}>
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link className="nav-link waves-effect waves-light" to="/users/quizzes">
+                <Link className="nav-link waves-effect waves-light" to="/users/quizzes" onClick={this.closeMenu}>
                   <i className="fa fa-question" /> ManageQuizzes
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" onClick={this.closeMenu}>
                 <a className="nav-link waves-effect waves-light"><i className="fa fa-gear" /> SignOut</a>
               </li>
             </ul>
           </div>
         }
-      </div>
-    </nav>
-  );
-};
+        </div>
+      </nav>
+    );
+  }
+}
 
 const mapDispatchToProps = dispatch => (
   {}
