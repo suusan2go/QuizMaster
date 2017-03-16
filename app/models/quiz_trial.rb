@@ -58,12 +58,12 @@ class QuizTrial < ApplicationRecord
     finish if rest_questions.blank?
   end
 
+  private
+
   def finish
     self.finished_at = Time.current
     finished!
   end
-
-  private
 
   def answered_question_ids
     user_answers.select(:question_id)
