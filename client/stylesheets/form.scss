@@ -19,4 +19,10 @@
   .ql-editor {
     min-height: 200px;
   }
+
+  &.has-danger {
+    .quill-contents.ql-container.ql-snow {
+      border-bottom: 1px solid #d9534f;
+    }
+  }
 }

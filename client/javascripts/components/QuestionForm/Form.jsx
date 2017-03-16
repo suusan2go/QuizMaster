@@ -14,13 +14,10 @@ const contentInput = (field) => {
         placeholder="How many letters are there in the English alphabet?"
         type="text"
         id="form5"
-        className={`md-textarea ${hasError && 'form-control-danger '}`}
         {...field.input}
       />
       <label htmlFor={field.input.name} className="active">Question</label>
-      {
-      hasError && <div className="form-control-feedback">{field.meta.error}</div>
-    }
+      { hasError && <div className="form-control-feedback">{field.meta.error}</div> }
     </div>
   );
 };
