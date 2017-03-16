@@ -19,7 +19,8 @@ gem "omniauth-google-oauth2"
 group :development, :test do
   gem 'awesome_print'
   gem 'byebug', platform: :mri
-  gem 'factory_girl'
+  gem 'faker'
+  gem 'factory_girl_rails'
   gem 'pry-awesome_print'
   gem 'pry-byebug'
   gem 'pry-doc'
