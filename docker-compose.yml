@@ -52,6 +52,8 @@ services:
       - ./tmp:/app/tmp
   rails:
     env_file: .env
+    environment:
+      POSTGRES_HOST: postgres
     build:
       context: ./
       dockerfile: ./docker/rails/Dockerfile
@@ -73,6 +75,7 @@ services:
       - bundle:/bundle
       - ./tmp:/app/tmp
       - ./spec:/app/spec
+      - .rspec:/app/.rspec
     ports:
       - "3000:3000"
     tty: true

@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  host: postgres
+  host: <%= ENV.fetch("POSTGRES_HOST") { 'localhost' } %>
   username: postgres
   password: password
   database: QuizMaster_development
@@ -60,7 +60,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  host: postgres
+  host: <%= ENV.fetch("POSTGRES_HOST") { 'localhost' } %>
   username: postgres
   password: password
   database: QuizMaster_test
