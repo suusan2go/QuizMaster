@@ -46,6 +46,7 @@ group :development do
 end
 
 group :test do
+  gem 'rspec-json_matcher'
   gem 'rspec_junit_formatter'
   gem 'simplecov'
 end
