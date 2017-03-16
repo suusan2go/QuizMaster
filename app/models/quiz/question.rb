@@ -23,6 +23,8 @@ class Quiz::Question < ApplicationRecord
   validates :content, presence: true
   validates :answer_content, presence: true
 
+  before_validation :sanitize_html_content
+
   delegate :content, to: :answer, prefix: true, allow_nil: true
 
   def answer_content=(value)
@@ -33,5 +35,12 @@ class Quiz::Question < ApplicationRecord
   # TODO: Normalize and format numbers
   def correct_answer?(content:)
     answer_content == content
+  end
+
+  private
+
+  # NOTE: only allow safe html tags
+  def sanitize_html_content
+    self.content = Quiz::Question::HtmlSanitizer.sanitize(content: content)
   end
 end
