@@ -34,12 +34,15 @@ class Quiz::Question < ApplicationRecord
 
   # TODO: Normalize and format numbers
   def correct_answer?(content:)
-    answer_content == content
+    normalized_answer_content == Quiz::Question::TextNormalizer.normalize(content: content)
   end
 
   private
 
-  # NOTE: only allow safe html tags
+  def normalized_answer_content
+    Quiz::Question::TextNormalizer.normalize(content: answer_content)
+  end
+
   def sanitize_html_content
     self.content = Quiz::Question::HtmlSanitizer.sanitize(content: content)
   end
