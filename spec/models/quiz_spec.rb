@@ -18,5 +18,19 @@
 require 'rails_helper'
 
 RSpec.describe Quiz, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#start_trial' do
+    let(:quiz) { create(:quiz) }
+    let(:user) { create(:user) }
+    subject { quiz.start_trial(user: user) }
+    context 'user has no on goinng quiz trials' do
+      before { create(:quiz_trial, :finished, user: user, quiz: quiz) }
+      it { is_expected.to be_a QuizTrial }
+      it { expect{subject}.to change(QuizTrial, :count).by(1) }
+    end
+    context 'user has on goinng quiz trials' do
+      before { create(:quiz_trial, user: user, quiz: quiz) }
+      it { is_expected.to be_a QuizTrial }
+      it { expect{subject}.not_to change(QuizTrial, :count) }
+    end
+  end
 end
