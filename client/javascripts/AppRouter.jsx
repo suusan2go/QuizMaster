@@ -13,8 +13,8 @@ const RenderWithMiddleware = applyRouterMiddleware(
   useAsyncLoader(),
 );
 
-const AppRouter = (props: { current_user: any }) => {
-  const store = configureStore({ currentUser: props.current_user });
+const AppRouter = (props: { currentUser: any }) => {
+  const store = configureStore({ currentUser: props.currentUser });
   return (
     <Provider store={store}>
       <Router history={browserHistory} render={routerProps => <RenderWithMiddleware {...routerProps} />} >
@@ -27,4 +27,4 @@ const AppRouter = (props: { current_user: any }) => {
 const node = document.getElementById('app-root');
 const propsJson = node.getAttribute('data-react-props');
 const props = JSON.parse(propsJson);
-ReactDOM.render(<AppRouter {...props} />, node);
+ReactDOM.render(<AppRouter currentUser={props} />, node);
