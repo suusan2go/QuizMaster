@@ -16,7 +16,7 @@ export default class CommonLayout extends React.Component {
         <div className="wrapper">
           {this.props.children}
         </div>
-        <footer className="page-footer default-color-dark center-on-small-only">
+        <footer className="page-footer default-color-dark center-on-small-only mt-0">
           <div className="footer-copyright">
             <div className="container-fluid">
             © 2017 Copyright: suzan2go

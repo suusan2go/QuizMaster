@@ -1,5 +1,6 @@
 .jumbotronBackground {
-  //background: url('./top_cover.jpg');
-  background-size: cover;
+  background: url('./top_cover.jpg'), linear-gradient(45deg, #550074 14%, #CC26A7 82%);
+  background-position: center;
   background-repeat: no-repeat;
+  background-size: cover;
 }

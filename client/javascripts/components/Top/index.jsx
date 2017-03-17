@@ -5,7 +5,7 @@ import style from './style.modules.scss';
 export default class Top extends React.Component {
   render() {
     return (
-      <div className={`jumbotron text-center  blue-grey lighten-5 ${style.jumbotronBackground}`}>
+      <div className={`jumbotron view jumbotron-top text-center  blue-grey lighten-5 ${style.jumbotronBackground}`}>
         <Helmet
           title="QuizMaster"
           description="QuizMaster"
@@ -13,13 +13,15 @@ export default class Top extends React.Component {
             { charset: 'utf-8' },
           ]}
         />
-        <h1 className="display-3">QuizMaster</h1>
-        <p className="lead">QuizMaster is a simple quiz based learning platform</p>
-        <hr className="my-4" />
-        <p>Create and Enjoy Quize</p>
-        <p className="lead">
-          <a className="btn btn-primary btn-lg btn-default" href="/auth/google" role="button"><i className="fa fa-google" aria-hidden="true" /> Sign In With Google</a>
-        </p>
+        <div className="mask pattern-3 pt-4">
+          <h1 className="display-3 text-white">QuizMaster</h1>
+          <p className="lead text-white">QuizMaster is a simple quiz based learning platform</p>
+          <hr className="my-4" />
+          <p className="text-white">Create and Enjoy Quize</p>
+          <p className="lead">
+            <a className="btn btn-primary btn-lg btn-default" href="/auth/google" role="button"><i className="fa fa-google" aria-hidden="true" /> Sign In With Google</a>
+          </p>
+        </div>
       </div>
     );
   }
