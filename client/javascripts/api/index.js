@@ -85,3 +85,7 @@ export function userAnswer(id: number) {
 export function quizTrialResult(id: number) {
   return get(`/api/quiz_trials/${id}/result`);
 }
+
+export function logOut() {
+  return sendDelete('/api/session');
+}

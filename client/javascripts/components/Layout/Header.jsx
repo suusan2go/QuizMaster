@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import * as authActions from 'actions/authActionCreators';
+import { bindActionCreators } from 'redux';
+import * as authActions from 'actions/authActionCreators';
 
 type Props = {
   currentUser: { name: string, avatar_url: string },
-  actions: { requestSignOut: Action }
+  actions: { logOut: Action }
 }
 
 class Header extends React.Component {
@@ -34,13 +34,16 @@ class Header extends React.Component {
     return (
       <nav className="navbar navbar-toggleable-md navbar-dark default-color">
         <div className="container">
-          <button
-            className="navbar-toggler navbar-toggler-right"
-            type="button" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation"
-            onClick={this.handleClickButton}
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
+          {
+          currentUser &&
+            <button
+              className="navbar-toggler navbar-toggler-right"
+              type="button" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation"
+              onClick={this.handleClickButton}
+            >
+              <span className="navbar-toggler-icon" />
+            </button>
+          }
           <Link className="navbar-brand" to="/" onClick={this.closeMenu} >
             <strong>QuizMaster</strong>
           </Link>
@@ -53,8 +56,10 @@ class Header extends React.Component {
                   <i className="fa fa-question" /> ManageQuizzes
                 </Link>
               </li>
-              <li className="nav-item" onClick={this.closeMenu}>
-                <a className="nav-link waves-effect waves-light"><i className="fa fa-gear" /> SignOut</a>
+              <li className="nav-item" onClick={this.props.actions.logOut}>
+                <a className="nav-link waves-effect waves-light">
+                  <i className="fa fa-gear" /> LogOut
+                </a>
               </li>
             </ul>
           </div>
@@ -66,8 +71,7 @@ class Header extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => (
-  {}
-  // { actions: bindActionCreators(authActions, dispatch) }
+  { actions: bindActionCreators(authActions, dispatch) }
 );
 
 const mapStateToProps = (state, ownProps) => ({
