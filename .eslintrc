@@ -6,7 +6,7 @@ plugins:
 settings:
   import/resolver:
     webpack:
-      config: 'webpack.config.client.js'
+      config: 'webpack.config.js'
 parser: babel-eslint
 parserOptions:
   ecmaFeatures:
