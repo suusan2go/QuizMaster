@@ -3,6 +3,7 @@
   <head>
     <%= csrf_meta_tags %>
     <title>QuizMaster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <% if Rails.env.production? %>
       <%= stylesheet_link_tag webpack_asset_path('bundle.css') %>
     <% end %>
