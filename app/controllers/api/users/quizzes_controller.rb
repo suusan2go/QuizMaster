@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+require_dependency(Rails.root.join('app/serializers/user', 'quizzes_serializer'))
+require_dependency(Rails.root.join('app/serializers/user', 'quiz_serializer'))
 class Api::Users::QuizzesController < Api::ApplicationController
   def index
     # TODO: pagination
