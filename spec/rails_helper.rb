@@ -53,7 +53,6 @@ end
 Capybara.default_max_wait_time = 5
 # Capybara save screenshot on failure
 Capybara::Screenshot.prune_strategy = :keep_last_run
-Capybara.save_path = "#{::Rails.root}/tmp/capybara"
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
