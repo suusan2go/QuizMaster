@@ -7,7 +7,6 @@ if ENV['CIRCLE_ARTIFACTS']
 end
 SimpleCov.start 'rails'
 
-
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
@@ -15,6 +14,11 @@ require 'spec_helper'
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require "rspec/json_matcher"
+require 'capybara/rspec'
+require 'capybara/poltergeist'
+require 'capybara/rails'
+require 'capybara/email/rspec'
+require 'capybara-screenshot/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -34,6 +38,22 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
+
+# Capybara
+Capybara.javascript_driver = :poltergeist
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, {
+    js_errors: false,
+    timeout: 1000,
+    debug: false,
+    phantomjs_options: ['--load-images=no', '--ignore-ssl-errors=yes', '--ssl-protocol=any']
+  })
+end
+# https://github.com/jnicklas/capybara#asynchronous-javascript-ajax-and-friends
+Capybara.default_max_wait_time = 5
+# Capybara save screenshot on failure
+Capybara::Screenshot.prune_strategy = :keep_last_run
+Capybara.save_path = "#{::Rails.root}/tmp/capybara"
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

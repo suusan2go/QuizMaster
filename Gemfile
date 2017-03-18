@@ -46,6 +46,10 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
+  gem 'capybara-screenshot'
+  gem 'capybara-email'
+  gem 'poltergeist'
   gem 'rspec-json_matcher'
   gem 'rspec_junit_formatter'
   gem 'simplecov'
