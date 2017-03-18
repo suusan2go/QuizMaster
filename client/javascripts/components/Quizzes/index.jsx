@@ -65,7 +65,7 @@ class Quizzes extends React.Component {
                     <div className="media">
                       <img className="rounded-circle d-flex mr-3" alt={quiz.title} src={quiz.image_url} />
                       <div className="media-body">
-                        <h5 className="mt-0">{quiz.title}</h5>
+                        <h5 className="mt-0 quiz-title">{quiz.title}</h5>
                         {quiz.description}
                       </div>
                     </div>
