@@ -54,7 +54,7 @@ module.exports = {
             {
               loader: 'sass-loader',
               options: {
-                includePaths: [path.resolve(__dirname, './client/stylesheets')],
+                includePaths: [path.resolve(__dirname, 'client/stylesheets')],
               },
             },
           ],
@@ -72,7 +72,7 @@ module.exports = {
             {
               loader: 'sass-loader',
               options: {
-                includePaths: [path.resolve(__dirname, './client/stylesheets')],
+                includePaths: [path.resolve(__dirname, 'client/stylesheets')],
               },
             },
           ],
