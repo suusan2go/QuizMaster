@@ -8,7 +8,7 @@ type Props = {
   removeFlashMessage: action,
 };
 
-const autoCloseSeconds = 10;
+const autoCloseSeconds = 5;
 const transitionSeconds = 0.3;
 export default class Flash extends React.Component {
   constructor(props) {
@@ -17,11 +17,11 @@ export default class Flash extends React.Component {
     this.state = { styles: { } };
   }
 
-  props: Props
-
   componentDidMount() {
-    setTimeout(() => this.handleClickClose, autoCloseSeconds * 1000);
+    setTimeout(this.handleClickClose, autoCloseSeconds * 1000);
   }
+
+  props: Props
 
   handleClickClose() {
     this.setState({ styles: { opacity: 0.01 } });
