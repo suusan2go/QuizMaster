@@ -25,7 +25,7 @@ export default function (store) {
   // replaceState not work
   const requireNoAuth = () => {
     if (currentUser) {
-      browserHistory && browserHistory.push('/quizzes');
+      browserHistory.push('/quizzes');
     }
   };
   return (

@@ -26,7 +26,7 @@ type Props = {
 }
 
 class MyQuizzes extends React.Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.actions.fetchMyQuizzes();
   }
 

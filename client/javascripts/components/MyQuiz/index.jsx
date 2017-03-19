@@ -37,7 +37,7 @@ class myQuiz extends React.Component {
     this.handleDeleteQuiz = this.handleDeleteQuiz.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.actions.fetchMyQuiz(this.props.params.id);
   }
 
