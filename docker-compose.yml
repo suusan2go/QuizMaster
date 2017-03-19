@@ -57,6 +57,9 @@ services:
       - "3000:3000"
     tty: true
     stdin_open: true
+    links:
+      - postgres
+      - redis
 volumes:
   bundle:
   node_modules:
