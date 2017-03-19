@@ -20,7 +20,7 @@ class Quiz < ApplicationRecord
 
   has_many :questions, -> { order(id: :desc) }, dependent: :destroy
   has_many :answers, through: :questions
-  has_many :quiz_trials
+  has_many :quiz_trials, dependent: :destroy
   belongs_to :user
 
   validates :title, presence: true

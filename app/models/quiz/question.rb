@@ -19,6 +19,7 @@ class Quiz::Question < ApplicationRecord
     class_name: Quiz::Question::Answer.name,
     autosave: true,
     dependent: :destroy
+  has_many :quiz_trial_user_answers, class_name: QuizTrial::UserAnswer, dependent: :destroy
   belongs_to :quiz
   validates :content, presence: true
   validates :answer_content, presence: true
