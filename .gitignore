@@ -46,3 +46,12 @@ node_modules
 
 # swap files
 *.swp
+
+# direnv
+.envrc
+
+# webpack generated assets
+public/assets
+
+# binstubs
+vendor/bin
