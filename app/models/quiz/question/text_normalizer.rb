@@ -37,7 +37,11 @@ class Quiz::Question::TextNormalizer
       if word == 'zero'
         0
       else
-        (Integer(word) rescue nil) || NumbersInWords.in_numbers(word).nonzero? || word
+        (begin
+           Integer(word)
+         rescue
+           nil
+         end) || NumbersInWords.in_numbers(word).nonzero? || word
       end
     end.join(' ')
   end
