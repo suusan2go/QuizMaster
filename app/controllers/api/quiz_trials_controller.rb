@@ -6,7 +6,7 @@ class Api::QuizTrialsController < Api::ApplicationController
   end
 
   def create
-    quiz = Quiz.published.find(params[:quiz_id])
+    quiz = Quiz.triable.find(params[:quiz_id])
     quiz_trial = quiz.start_trial(user: current_user)
     if quiz_trial.valid?
       render_json props: QuizTrialSerializer.new(model: quiz_trial).as_json

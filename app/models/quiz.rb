@@ -15,8 +15,6 @@
 #
 
 class Quiz < ApplicationRecord
-  enum status: { draft: 0, published: 10 }
-
   has_many :questions, -> { order(id: :desc) }, dependent: :destroy
   has_many :answers, through: :questions
   has_many :quiz_trials, dependent: :destroy
@@ -25,8 +23,7 @@ class Quiz < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
 
-  # TODO: handle by status
-  scope :published, -> { joins(:questions).distinct }
+  scope :triable, -> { joins(:questions).distinct }
 
   def start_trial(user:)
     quiz_trial = quiz_trials.on_going.find_by(user: user)

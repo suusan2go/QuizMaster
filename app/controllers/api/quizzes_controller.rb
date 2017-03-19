@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class Api::QuizzesController < Api::ApplicationController
   def index
-    quizzes = Quiz.published.order(id: :desc)
+    quizzes = Quiz.triable.order(id: :desc)
     render_json props: QuizzesSerializer.new(model: quizzes).as_json
   end
 
