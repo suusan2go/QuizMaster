@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import ReactQuill from 'react-quill';
 import { browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
+import { QUESTION_FORM } from 'constants/form';
 
 import 'react-quill/dist/quill.snow.css';
 
@@ -90,5 +91,5 @@ class QuestionForm extends React.Component {
 
 // Decorate the form component
 export default reduxForm({
-  form: 'questionForm', // a unique name for this form
+  form: QUESTION_FORM, // a unique name for this form
 })(QuestionForm);

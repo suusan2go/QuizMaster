@@ -1,5 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { QUIZ_TRIAL_ANSWER_FORM } from 'constants/form';
 import styles from './style.modules.scss';
 
 const answerInput = (field) => {
@@ -42,5 +43,5 @@ class AnswerForm extends React.Component {
 
 // Decorate the form component
 export default reduxForm({
-  form: 'quizTrialAnswerForm', // a unique name for this form
+  form: QUIZ_TRIAL_ANSWER_FORM, // a unique name for this form
 })(AnswerForm);

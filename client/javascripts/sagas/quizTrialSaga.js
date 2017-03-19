@@ -14,6 +14,7 @@ import {
   removeAllFlashMessages,
 } from 'actions/flashMessagesActionCreators';
 import { browserHistory } from 'react-router';
+import { QUIZ_TRIAL_ANSWER_FORM } from 'constants/form';
 import ErrorHandler from './ErrorHandler';
 
 export function* handleStartQuizTrial(action) {
@@ -52,19 +53,19 @@ export function* handleGetQuizTrialResult(action) {
 
 export function* handleSubmitQuizTrialAnswer(action) {
   try {
-    yield put(startSubmit('quizTrialAnswerForm'));
+    yield put(startSubmit(QUIZ_TRIAL_ANSWER_FORM));
     const payload = yield call(
       api.submitQuizTrialAnswer,
       action.payload.quizTrialId,
       action.payload.values,
     );
-    yield put(reset('quizTrialAnswerForm'));
+    yield put(reset(QUIZ_TRIAL_ANSWER_FORM));
     browserHistory.push(`/user_answers/${payload.id}`);
   } catch (error) {
     yield put(removeAllFlashMessages());
     if (error.response && error.response.data.validation_errors) {
       yield put(addWarningFlashMessage('Submission Failed'));
-      yield put(stopSubmit('quizTrialAnswerForm', error.response.data.validation_errors));
+      yield put(stopSubmit(QUIZ_TRIAL_ANSWER_FORM, error.response.data.validation_errors));
     } else {
       const errorHandler = new ErrorHandler(error);
       yield errorHandler.handleError();

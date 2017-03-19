@@ -1,0 +1,3 @@
+export const QUIZ_FORM = 'QUIZ_FORM';
+export const QUESTION_FORM = 'QUESTION_FORM';
+export const QUIZ_TRIAL_ANSWER_FORM = 'QUIZ_TRIAL_ANSWER_FORM';

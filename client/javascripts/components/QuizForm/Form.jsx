@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import { browserHistory } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
+import { QUIZ_FORM } from 'constants/form';
 
 const titleInput = (field) => {
   const hasError = field.meta.error && field.meta.error.length !== 0;
@@ -90,5 +91,5 @@ class QuizForm extends React.Component {
 
 // Decorate the form component
 export default reduxForm({
-  form: 'quizForm', // a unique name for this form
+  form: QUIZ_FORM, // a unique name for this form
 })(QuizForm);

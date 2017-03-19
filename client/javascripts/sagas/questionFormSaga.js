@@ -18,23 +18,24 @@ import {
   removeAllFlashMessages,
 } from 'actions/flashMessagesActionCreators';
 import { browserHistory } from 'react-router';
+import { QUESTION_FORM } from 'constants/form';
 import ErrorHandler from './ErrorHandler';
 
 export function* handleCreateQuestion(action) {
   try {
-    yield put(startSubmit('questionForm'));
+    yield put(startSubmit(QUESTION_FORM));
     const payload = yield call(api.createQuestion, action.payload.quizId, action.payload.values);
     yield put(createQuestionSuccess(payload));
     yield put(removeAllFlashMessages());
     yield put(addSuccessFlashMessage('Submission Succeeded'));
-    yield put(reset('quizForm'));
+    yield put(reset(QUESTION_FORM));
     browserHistory.goBack();
   } catch (error) {
     yield put(createQuestionFailed(error));
     yield put(removeAllFlashMessages());
     if (error.response && error.response.data.validation_errors) {
       yield put(addWarningFlashMessage('Submission Failed'));
-      yield put(stopSubmit('questionForm', error.response.data.validation_errors));
+      yield put(stopSubmit(QUESTION_FORM, error.response.data.validation_errors));
     } else {
       const errorHandler = new ErrorHandler(error);
       yield errorHandler.handleError();
@@ -44,21 +45,21 @@ export function* handleCreateQuestion(action) {
 
 export function* handleUpdateQuestion(action) {
   try {
-    yield put(startSubmit('questionForm'));
+    yield put(startSubmit(QUESTION_FORM));
     const payload = yield call(
       api.updateQuestion, action.payload.questionId, action.payload.values,
     );
     yield put(updateQuestionSuccess(payload));
     yield put(removeAllFlashMessages());
     yield put(addSuccessFlashMessage('Submission Succeeded'));
-    yield put(reset('quizForm'));
+    yield put(reset(QUESTION_FORM));
     browserHistory.goBack();
   } catch (error) {
     yield put(updateQuestionFailed(error));
     yield put(removeAllFlashMessages());
     if (error.response && error.response.data.validation_errors) {
       yield put(addWarningFlashMessage('Submission Failed'));
-      yield put(stopSubmit('questionForm', error.response.data.validation_errors));
+      yield put(stopSubmit(QUESTION_FORM, error.response.data.validation_errors));
     } else {
       const errorHandler = new ErrorHandler(error);
       yield errorHandler.handleError();

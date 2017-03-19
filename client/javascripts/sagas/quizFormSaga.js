@@ -18,41 +18,42 @@ import {
 } from 'actions/flashMessagesActionCreators';
 import { browserHistory } from 'react-router';
 import ErrorHandler from './ErrorHandler';
+import { QUIZ_FORM } from 'constants/form';
 
 export function* handleCreateQuiz(action) {
   try {
-    yield put(startSubmit('quizForm'));
+    yield put(startSubmit(QUIZ_FORM));
     const payload = yield call(api.createQuiz, action.payload);
     yield put(createQuizSuccess(payload));
     yield put(removeAllFlashMessages());
     yield put(addSuccessFlashMessage('Submission Succeeded'));
-    yield put(reset('quizForm'));
+    yield put(reset(QUIZ_FORM));
     browserHistory.push(`/users/quizzes/${payload.id}`);
   } catch (error) {
     yield put(createQuizFailed(error));
     yield put(removeAllFlashMessages());
     if (error.response.data.validation_errors) {
       yield put(addWarningFlashMessage('Submission Failed'));
-      yield put(stopSubmit('quizForm', error.response.data.validation_errors));
+      yield put(stopSubmit(QUIZ_FORM, error.response.data.validation_errors));
     }
   }
 }
 
 export function* handleUpdateQuiz(action) {
   try {
-    yield put(startSubmit('quizForm'));
+    yield put(startSubmit(QUIZ_FORM));
     const payload = yield call(api.updateQuiz, action.payload.quizId, action.payload.values);
     yield put(updateQuizSuccess(payload));
     yield put(removeAllFlashMessages());
     yield put(addSuccessFlashMessage('Submission Succeeded'));
-    yield put(reset('quizForm'));
+    yield put(reset(QUIZ_FORM));
     browserHistory.goBack();
   } catch (error) {
     yield put(updateQuizFailed(error));
     yield put(removeAllFlashMessages());
     if (error.response.data.validation_errors) {
       yield put(addWarningFlashMessage('Submission Failed'));
-      yield put(stopSubmit('quizForm', error.response.data.validation_errors));
+      yield put(stopSubmit(QUIZ_FORM, error.response.data.validation_errors));
     }
   }
 }
