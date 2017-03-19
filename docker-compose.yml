@@ -27,29 +27,6 @@ services:
     image: redis:3.2.6-alpine
     ports:
       - "6379:6379"
-  sidekiq: &sidekiq
-    build:
-      context: ./
-      dockerfile: ./docker/rails/Dockerfile
-    command: bundle exec sidekiq --queue high --queue low
-    environment:
-      MYSQL_HOST: mysql
-      MYSQL_PASSWORD: password
-      MYSQL_PORT: 3306
-    volumes:
-      - ./app:/app/app
-      - ./bin:/app/bin
-      - ./config:/app/config
-      - ./config.ru:/app/config.ru
-      - ./db:/app/db
-      - ./Gemfile:/app/Gemfile
-      - ./Gemfile.lock:/app/Gemfile.lock
-      - ./lib:/app/lib
-      - ./public:/app/public
-      - ./Rakefile:/app/Rakefile
-      - ./scripts:/app/scripts
-      - bundle:/bundle
-      - ./tmp:/app/tmp
   rails:
     env_file: .env
     environment:
