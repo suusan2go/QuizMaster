@@ -244,6 +244,9 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
+    seed-fu (2.3.6)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
     sexp_processor (4.8.0)
     simplecov (0.14.0)
       docile (~> 1.1.0)
@@ -318,6 +321,7 @@ DEPENDENCIES
   rspec-rails
   rspec_junit_formatter
   rubocop
+  seed-fu
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
@@ -326,4 +330,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.13.7
+   1.14.6
