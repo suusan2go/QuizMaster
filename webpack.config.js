@@ -28,7 +28,7 @@ module.exports = {
     }),
     new FlowBabelWebpackPlugin(),
     new ExtractTextPlugin({
-      filename: 'styles.css',
+      filename: 'bundle-[hash].css',
       disable: !isProduction,
     }),
   ],
