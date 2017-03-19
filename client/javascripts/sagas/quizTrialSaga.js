@@ -14,13 +14,15 @@ import {
   removeAllFlashMessages,
 } from 'actions/flashMessagesActionCreators';
 import { browserHistory } from 'react-router';
+import ErrorHandler from './ErrorHandler';
 
 export function* handleStartQuizTrial(action) {
   try {
     const payload = yield call(api.startQuizTrial, action.payload);
     browserHistory.push(`/quiz_trials/${payload.id}`);
   } catch (error) {
-    // TODO: error handling
+    const errorHandler = new ErrorHandler(error);
+    yield errorHandler.handleError();
   }
 }
 
@@ -33,7 +35,8 @@ export function* handleGetQuizTrial(action) {
       yield put(getQuizTrialSuccess(payload));
     }
   } catch (error) {
-    // TODO: error handling
+    const errorHandler = new ErrorHandler(error);
+    yield errorHandler.handleError();
   }
 }
 
@@ -42,7 +45,8 @@ export function* handleGetQuizTrialResult(action) {
     const payload = yield call(api.quizTrialResult, action.payload);
     yield put(getQuizTrialResultSuccess(payload));
   } catch (error) {
-    // TODO: error handling
+    const errorHandler = new ErrorHandler(error);
+    yield errorHandler.handleError();
   }
 }
 
@@ -61,6 +65,9 @@ export function* handleSubmitQuizTrialAnswer(action) {
     if (error.response && error.response.data.validation_errors) {
       yield put(addWarningFlashMessage('Submission Failed'));
       yield put(stopSubmit('quizTrialAnswerForm', error.response.data.validation_errors));
+    } else {
+      const errorHandler = new ErrorHandler(error);
+      yield errorHandler.handleError();
     }
   }
 }

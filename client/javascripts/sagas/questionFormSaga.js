@@ -18,6 +18,7 @@ import {
   removeAllFlashMessages,
 } from 'actions/flashMessagesActionCreators';
 import { browserHistory } from 'react-router';
+import ErrorHandler from './ErrorHandler';
 
 export function* handleCreateQuestion(action) {
   try {
@@ -34,6 +35,9 @@ export function* handleCreateQuestion(action) {
     if (error.response && error.response.data.validation_errors) {
       yield put(addWarningFlashMessage('Submission Failed'));
       yield put(stopSubmit('questionForm', error.response.data.validation_errors));
+    } else {
+      const errorHandler = new ErrorHandler(error);
+      yield errorHandler.handleError();
     }
   }
 }
@@ -55,6 +59,9 @@ export function* handleUpdateQuestion(action) {
     if (error.response && error.response.data.validation_errors) {
       yield put(addWarningFlashMessage('Submission Failed'));
       yield put(stopSubmit('questionForm', error.response.data.validation_errors));
+    } else {
+      const errorHandler = new ErrorHandler(error);
+      yield errorHandler.handleError();
     }
   }
 }
@@ -66,7 +73,8 @@ export function* handleDeleteQuestion(action) {
     yield put(removeAllFlashMessages());
     yield put(addSuccessFlashMessage('Deleted'));
   } catch (error) {
-    // TODO: error handling
+    const errorHandler = new ErrorHandler(error);
+    yield errorHandler.handleError();
   }
 }
 

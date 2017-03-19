@@ -4,13 +4,15 @@ import {
   GET_USER_ANSWER,
   getUserAnswerSuccess,
 } from 'actions/userAnswerActionCreators';
+import ErrorHandler from './ErrorHandler';
 
 export function* handleFetchQuiz(action) {
   try {
     const payload = yield call(api.userAnswer, action.payload);
     yield put(getUserAnswerSuccess(payload));
   } catch (error) {
-    // TODO: error handling
+    const errorHandler = new ErrorHandler(error);
+    yield errorHandler.handleError();
   }
 }
 

@@ -17,6 +17,7 @@ import {
   removeAllFlashMessages,
 } from 'actions/flashMessagesActionCreators';
 import { browserHistory } from 'react-router';
+import ErrorHandler from './ErrorHandler';
 
 export function* handleCreateQuiz(action) {
   try {
@@ -63,7 +64,8 @@ export function* handleDeleteQuiz(action) {
     yield put(addSuccessFlashMessage('Deleted'));
     browserHistory.push('/users/quizzes');
   } catch (error) {
-    // TODO: Error handling
+    const errorHandler = new ErrorHandler(error);
+    yield errorHandler.handleError();
   }
 }
 
