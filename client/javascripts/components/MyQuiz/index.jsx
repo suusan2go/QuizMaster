@@ -65,6 +65,11 @@ class myQuiz extends React.Component {
             { charset: 'utf-8' },
           ]}
         />
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+          <li className="breadcrumb-item"><Link to="/users/quizzes">MyQuizzes</Link></li>
+          <li className="breadcrumb-item active">{quiz.title}</li>
+        </ol>
         <div className="container">
           <div className="page-header">
             <h1 className="h1-responsive d-inline-block">

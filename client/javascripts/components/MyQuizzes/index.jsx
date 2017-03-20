@@ -42,6 +42,10 @@ class MyQuizzes extends React.Component {
     console.log(this.props);
     return (
       <div>
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+          <li className="breadcrumb-item active">MyQuizzes</li>
+        </ol>
         <Helmet
           title="MyQuizzes | QuizMaster"
           description="QuizMaster My quizez"
