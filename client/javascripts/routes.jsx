@@ -12,6 +12,7 @@ import EditQuestionForm from 'components/QuestionForm/EditQuestionForm';
 import QuizTrial from 'components/QuizTrial';
 import QuizTrialResult from 'components/QuizTrialResult';
 import UserAnswer from 'components/UserAnswer';
+import NotFound from 'components/NotFound';
 
 export default function (store) {
   const currentUser = store.getState().currentUser;
@@ -22,7 +23,7 @@ export default function (store) {
     }
   };
 
-  // replaceState not work
+  // replaceState cause endless loop...
   const requireNoAuth = () => {
     if (currentUser) {
       browserHistory.push('/quizzes');
@@ -42,6 +43,7 @@ export default function (store) {
       <Route component={QuizTrial} path="/quiz_trials/:id" onEnter={requireAuth} />
       <Route component={QuizTrialResult} path="/quiz_trials/:id/result" onEnter={requireAuth} />
       <Route component={UserAnswer} path="/user_answers/:id" onEnter={requireAuth} />
+      <Route path="*" component={NotFound} />
     </Route>
   );
 }
