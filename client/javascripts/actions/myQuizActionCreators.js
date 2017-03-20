@@ -1,9 +1,9 @@
 import { createAction } from 'redux-actions';
 
-export const FETCH_MY_QUIZ = 'FETCH_MY_QUIZ';
-export const FETCH_MY_QUIZ_SUCCESS = 'FETCH_MY_QUIZ_SUCCESS';
+export const GET_MY_QUIZ = 'GET_MY_QUIZ';
+export const GET_MY_QUIZ_SUCCESS = 'GET_MY_QUIZ_SUCCESS';
 export const CLEAR_MY_QUIZ = 'CLEAR_MY_QUIZ';
 
-export const fetchMyQuiz = createAction(FETCH_MY_QUIZ);
-export const fetchMyQuizSuccess = createAction(FETCH_MY_QUIZ_SUCCESS);
+export const getMyQuiz = createAction(GET_MY_QUIZ);
+export const getMyQuizSuccess = createAction(GET_MY_QUIZ_SUCCESS);
 export const clearMyQuiz = createAction(CLEAR_MY_QUIZ);

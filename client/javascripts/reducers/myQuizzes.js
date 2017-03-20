@@ -4,7 +4,7 @@ import * as quizFormActions from 'actions/quizFormActionCreators';
 import findIndex from 'lodash/findIndex';
 
 const myQuizzes = handleActions({
-  [myQuizzesActions.FETCH_MY_QUIZZES_SUCCESS]: (state, action) => (
+  [myQuizzesActions.GET_MY_QUIZZES_SUCCESS]: (state, action) => (
     action.payload.quizzes
   ),
   [quizFormActions.DELETE_QUIZ_SUCCESS]: (state, action) => {

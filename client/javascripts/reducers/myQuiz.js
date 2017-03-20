@@ -3,7 +3,7 @@ import * as myQuizActions from 'actions/myQuizActionCreators';
 import * as questionFormActions from 'actions/questionFormActionCreators';
 
 const myQuiz = handleActions({
-  [myQuizActions.FETCH_MY_QUIZ_SUCCESS]: (state, action) => {
+  [myQuizActions.GET_MY_QUIZ_SUCCESS]: (state, action) => {
     const { id, title, description, questions } = action.payload;
     return { id, title, description, questions };
   },

@@ -11,7 +11,7 @@ import {
   updateQuestionFailed,
   deleteQuestionSuccess,
 } from 'actions/questionFormActionCreators';
-import { fetchMyQuizzes } from 'actions/myQuizzesActionCreators';
+import { getMyQuizzes } from 'actions/myQuizzesActionCreators';
 import {
   addWarningFlashMessage,
   addSuccessFlashMessage,

@@ -23,7 +23,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 type Props = {
-  actions: { fetchMyQuiz: action, deleteQuestion: action, deleteQuiz: action },
+  actions: { getMyQuiz: action, deleteQuestion: action, deleteQuiz: action },
   myQuiz: {
     title: string, descriptn: string, id: string,
     questions: Array<{ id: string, content: string, answer_content: string }>
@@ -38,7 +38,7 @@ class myQuiz extends React.Component {
   }
 
   componentWillMount() {
-    this.props.actions.fetchMyQuiz(this.props.params.id);
+    this.props.actions.getMyQuiz(this.props.params.id);
   }
 
   handleDeleteQuestion(questionID) {
