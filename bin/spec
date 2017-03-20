@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+def system!(*args)
+  system(*args) || abort("\n== Command #{args} failed ==")
+end
+
+puts "\n== build assets =="
+system! 'docker-compose run --rm webpack yarn run prod'
+
+puts "\n== setup test database =="
+system! 'docker-compose run --rm rails bin/rails db:migrate RAILS_ENV=test'
+
+puts "\n== run specs =="
+system! 'docker-compose run --rm rails bin/rake spec'

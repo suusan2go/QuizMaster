@@ -8,7 +8,7 @@ If you using Mac, please install Docker for Max.
 Please run setup setup script.
 
 ```bash
-bin/docker_setup
+bin/setup
 ```
 
 This script will do these setups.
@@ -60,5 +60,5 @@ docker-compose run --rm webpack yarn run prod
 Or run all tests by run this script
 
 ```
-bin/docker_spec
+bin/spec
 ```
