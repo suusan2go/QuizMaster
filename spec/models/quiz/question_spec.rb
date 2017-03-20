@@ -58,6 +58,23 @@ RSpec.describe Quiz::Question, type: :model do
         let(:content) { 'five Dogs' }
         it { is_expected.to eq true }
       end
+
+      context 'submitted answer has number and words with no spaces' do
+        let(:content) { '5Dogs' }
+        it do
+          pending 'this pattern is currently not supported'
+          is_expected.to eq true
+        end
+      end
+
+      context 'submitted answer has big number and words' do
+        let(:answer){ '500 dogs' }
+        let(:content) { 'five hundred Dogs' }
+        it do
+          pending 'this pattern is currently not supported'
+          is_expected.to eq true
+        end
+      end
     end
   end
 end
