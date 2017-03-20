@@ -1,24 +1,64 @@
-# README
+# Setup for development
+## Install Docker and Docker Compose
+If you using Mac, please install Docker for Max.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Download Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
 
-Things you may want to cover:
+## Build Docker images.
+Please run setup setup script.
 
-* Ruby version
+```bash
+bin/docker_setup
+```
 
-* System dependencies
+This script will do these setups.
+* build docker images (postgres, redis, rails, webpack)
+* install gems
+* install npm packages (using `yarn`)
+* rake db:setup
+* rake db:seed_fu
+* cp .env.sample .env
 
-* Configuration
+## Set Oauth Environment Variable
+This app using `.env` file to pass environment variables to docker container. (`.env` had been created in setup script.)
+Please update `.env` to your own id and secret. Also, please set callback url to `http://localhost:3000/auth/google/callback`
 
-* Database creation
+```bash
+GOOGLE_CLIENT_ID=<your google client id>
+GOOGLE_CLIENT_SECRET=<your google client secret>
+```
 
-* Database initialization
+## Start App!
+```bash
+docker-compose up
+```
+Please access `http://localhost:3000`.
 
-* How to run the test suite
+# Tips
+## I want to run rails console
+```bash
+docker-compose run --rm rails bin/rails c
+```
+## I want to debug using `binding.pry`
+```bash
+# start app
+docker-compose up
+# check rails container
+docker ps
+# attach to rails container
+docker attach quizmaster_rails_1
+```
+## I want to run tests
+```
+docker-compose run --rm rails bundle exec rspec <target file>
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+If you want to run feature test, you have to build assets before.
+```
+docker-compose run --rm webpack yarn run prod
+```
+Or run all tests by run this script
 
-* Deployment instructions
-
-* ...
+```
+bin/docker_spec
+```
