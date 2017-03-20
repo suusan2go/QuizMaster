@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  get '/auth/:action/callback', to: 'auths#callback'
+  get '/auth/google/callback', to: 'auths#callback'
 
   # client side routing
   get '*path', to: 'root#index'

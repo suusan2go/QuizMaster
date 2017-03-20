@@ -5,7 +5,6 @@ class AuthsController < ApplicationController
     sign_in(user: user)
     redirect_to root_url
   end
-  alias google callback
 
   private
 
