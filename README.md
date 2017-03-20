@@ -5,7 +5,7 @@ If you using Mac, please install Docker for Max.
 [Download Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
 
 ## Build Docker images.
-Please run setup setup script.
+Please run setup script below.
 
 ```bash
 bin/setup
@@ -20,7 +20,7 @@ This script will do these setups.
 * cp .env.sample .env
 
 ## Set Oauth Environment Variable
-This app uses `.env` file to pass environment variables to docker container. (`.env` had been created in setup script.)
+This app uses `.env` file to pass environment variables to docker container. (`.env` will be created in setup script.)
 Please update `.env` to your own id and secret. Also, please set callback url to `http://localhost:3000/auth/google/callback`
 
 ```bash
