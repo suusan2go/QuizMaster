@@ -39,7 +39,6 @@ class MyQuizzes extends React.Component {
   props: Props
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <ol className="breadcrumb">
