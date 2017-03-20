@@ -12,6 +12,7 @@ gem 'puma', '~> 3.0'
 gem 'json_world'
 gem "omniauth-google-oauth2"
 gem 'numbers_in_words'
+gem 'redis-rails'
 gem 'seed-fu'
 
 group :development, :test do
