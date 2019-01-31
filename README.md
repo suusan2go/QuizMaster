@@ -1,6 +1,6 @@
 # Setup for development
 ## Install Docker and Docker Compose
-If you using Mac, please install Docker for Max.
+If you using Mac, please install Docker for Mac.
 
 [Download Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
 
